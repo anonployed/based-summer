@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import MintButton from "/workspaces/based-summer/public/components/MintButton"; // Ensure this path is correct
+// import MintButton from "/workspaces/based-summer/public/components/MintButton"; // Commented out
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <div className="relative flex flex-col items-center justify-center w-full h-full">
         <div className="absolute top-24 w-full flex justify-center items-center">
         </div>
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex items-center justify-center mt-12 relative">
           <Image
             className="w-80 h-80"
             src="/img/bulmita.png"
@@ -35,9 +35,7 @@ export default function Home() {
             height={320}
             priority
           />
-        </div>
-        <div className="absolute bottom-24 w-full flex justify-center">
-          <MintButton />
+          <button className="click-me-button absolute bottom-12">CLICK ME</button> {/* Adjusted position */}
         </div>
       </div>
       <div className="absolute bottom-0 w-full overflow-hidden">
@@ -82,6 +80,22 @@ export default function Home() {
           to {
             transform: translateX(-50%);
           }
+        }
+        .click-me-button {
+          background-color: rgba(255, 141, 207, var(--tw-bg-opacity)); /* Pink background with opacity variable */
+          color: white;
+          padding: 15px 30px;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          position: absolute;
+          bottom: 12px; /* Adjusted to be higher */
+        }
+        .click-me-button:hover {
+          background-color: rgba(255, 141, 207, calc(var(--tw-bg-opacity) - 0.1)); /* Darker pink on hover with adjusted opacity */
         }
       `}</style>
     </main>
