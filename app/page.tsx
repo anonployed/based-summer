@@ -44,7 +44,7 @@ export default function Home() {
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>higher.
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>send it
-            <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>it's time to build
+            <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>it&#39;s time to build
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>WE ARE SO BACK
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>⌐◨-◨
@@ -56,7 +56,7 @@ export default function Home() {
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>higher.
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>send it
-            <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>it's time to build
+            <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>it&#39;s time to build
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>WE ARE SO BACK
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(255, 141, 207)' }}></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
             <div className="mx-4 h-4 w-4 rounded-full" style={{ background: 'rgb(254, 224, 2)' }}></div>⌐◨-◨
