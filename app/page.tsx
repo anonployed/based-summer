@@ -7,12 +7,9 @@ import { OnchainKitProvider } from "@coinbase/onchainkit";
 import './globals.css';
 import BasedText from './BasedText';
 
-
-// Log the available exports from @coinbase/onchainkit
 import * as OnchainKit from "@coinbase/onchainkit";
 console.log(OnchainKit);
 
-// Check the available exports
 const { Avatar, Name } = OnchainKit;
 
 export default function Home() {
@@ -32,28 +29,21 @@ export default function Home() {
   }, []);
 
   const connectWallet = async () => {
-    // Check if the Coinbase Wallet extension is available
-    if (typeof window.ethereum !== "undefined" && window.ethereum.isCoinbaseWallet) {
-      try {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setAddress(accounts[0]);
-        setStatus('connected');
-        console.log("Connected account:", accounts[0]);
-      } catch (error) {
-        console.error("Error connecting to Coinbase wallet:", error);
+    try {
+      let accounts;
+      if (window.ethereum?.isCoinbaseWallet) {
+        accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      } else if (window.coinbaseEthereum) {
+        accounts = await window.coinbaseEthereum.request({ method: "eth_requestAccounts" });
+      } else {
+        console.error("Coinbase Wallet not found");
+        return;
       }
-    } else if (typeof window.coinbaseEthereum !== "undefined") {
-      // If not available, use the WalletLink provider
-      try {
-        const accounts = await window.coinbaseEthereum.request({ method: "eth_requestAccounts" });
-        setAddress(accounts[0]);
-        setStatus('connected');
-        console.log("Connected account:", accounts[0]);
-      } catch (error) {
-        console.error("Error connecting to WalletLink:", error);
-      }
-    } else {
-      console.error("Coinbase Wallet not found");
+      setAddress(accounts[0]);
+      setStatus('connected');
+      console.log("Connected account:", accounts[0]);
+    } catch (error) {
+      console.error("Error connecting to wallet:", error);
     }
   };
 
@@ -70,7 +60,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#344afb] relative">
         <div className="absolute top-0 right-0 w-1/6 h-1/6 overflow-hidden">
           <Image
-            className="objectContain"
+            className="object-contain"
             src="/img/gm.svg"
             alt="gm Logo"
             fill
@@ -79,30 +69,40 @@ export default function Home() {
         </div>
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
-          <div className="flex items-center justify-center mt-12 relative">
+          <div className="relative flex items-center justify-center mt-6">
+          <div className="relative z-0 flex flex-col bottom-[100px] items-center">
+              <Image
+                src="/img/farca.png"
+                alt="Farca Background"
+                width={700}  
+                height={550}
+                priority
+              />
+              <button 
+                className="click-me-button mt-4" 
+                onClick={connectWallet}
+              >
+                LOGIN
+              </button>
+            </div>
+          </div>
             <Image
-              className="w-80 h-80"
-              src="/img/bulmita.png"
+              className="absolute center left-[250px] bottom-[100px] w-90 h-90 z-30"
+              src="/img/vg.png"
               alt="Left Image"
-              width={320}
-              height={320}
+              width={420}
+              height={420}
               priority
             />
             <Image
-              className="w-80 h-80"
-              src="/img/vgtbase.png"
+              className="absolute center right-[300px] bottom-[100px] w-90 h-90 z-30"
+              src="/img/bulmi.png"
               alt="Right Image"
               width={320}
-              height={320}
+              height={340}
               priority
             />
-            <button
-              className="click-me-button absolute bottom-12"
-              onClick={connectWallet}
-            >
-              LOGIN
-            </button>
-          </div>
+            
           {status === 'connected' && (
             <div className="flex flex-grow mt-8">
               <div className="flex h-10 items-center space-x-4">

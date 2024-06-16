@@ -32,12 +32,6 @@ body {
   }
 }
 
-/* globals.css */
-
-.objectContain {
-  object-fit: contain;
-}
-
 .marquee {
   animation: marquee 10s linear infinite;
 }
@@ -55,17 +49,16 @@ body {
   background-color: rgba(255, 141, 207, var(--tw-bg-opacity));
   color: white;
   padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
+  border-radius:10px;
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
   position: absolute;
-  bottom: 12px;
+  bottom: 110px;
 }
 
-.click-me-button:hover {
+.click-me-button:hover { 
   background-color: rgba(255, 141, 207, calc(var(--tw-bg-opacity) - 0.1));
 }
 
@@ -76,5 +69,16 @@ body {
 .pink-bg {
   background: rgb(255, 141, 207);
 }
+
+.gm-bg {
+  background-image: url("../public/img/gm2.svg");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+
+
 
 

@@ -5,6 +5,23 @@
 </h1>
 
 <h2>TODO:</h2>
+- [ ] Responsive
+- [ ] Add NFT
+- [ ] Read Farcaster info
+- [ ] Add ENS support
+- [ ] Add wallet stuff
+- [ ] Paymaster
+- [ ] img resources
+- [ ] css resources
+- [ ] NFT art
+- [ ] Pudgy?
+- [X] Nounish art
+- [ ] orb button?
+- [ ] onchain abstraction
+- [ ] more abstraction
+- [ ] submit before 30th
+- [ ] check res files performance
+
 
 Checklist for Coinbase Smart Wallet
 - [x] Dependencies in package.json
