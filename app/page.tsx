@@ -1,74 +1,124 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import './globals.css'; // Ensure your globals.css is imported
+import WalletLink from "@coinbase/wallet-sdk";
+import { OnchainKitProvider } from "@coinbase/onchainkit";
+import './globals.css';
+import BasedText from './BasedText';
 
-// import MintButton from "/workspaces/based-summer/public/components/MintButton"; // Commented out
+
+// Log the available exports from @coinbase/onchainkit
+import * as OnchainKit from "@coinbase/onchainkit";
+console.log(OnchainKit);
+
+// Check the available exports
+const { Avatar, Name } = OnchainKit;
 
 export default function Home() {
+  const [address, setAddress] = useState(null);
+  const [status, setStatus] = useState('disconnected');
+
+  useEffect(() => {
+    const walletLink = new WalletLink({
+      appName: "Based Summer",
+      darkMode: false,
+    });
+
+    const rpcEndpoint = process.env.NEXT_PUBLIC_RPC_ENDPOINT; // Ensure this variable is defined in Vercel
+    const ethereum = walletLink.makeWeb3Provider(rpcEndpoint, 1);
+
+    window.coinbaseEthereum = ethereum; // Save the Coinbase provider in a different variable
+  }, []);
+
+  const connectWallet = async () => {
+    // Check if the Coinbase Wallet extension is available
+    if (typeof window.ethereum !== "undefined" && window.ethereum.isCoinbaseWallet) {
+      try {
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setAddress(accounts[0]);
+        setStatus('connected');
+        console.log("Connected account:", accounts[0]);
+      } catch (error) {
+        console.error("Error connecting to Coinbase wallet:", error);
+      }
+    } else if (typeof window.coinbaseEthereum !== "undefined") {
+      // If not available, use the WalletLink provider
+      try {
+        const accounts = await window.coinbaseEthereum.request({ method: "eth_requestAccounts" });
+        setAddress(accounts[0]);
+        setStatus('connected');
+        console.log("Connected account:", accounts[0]);
+      } catch (error) {
+        console.error("Error connecting to WalletLink:", error);
+      }
+    } else {
+      console.error("Coinbase Wallet not found");
+    }
+  };
+
+  const disconnect = () => {
+    setAddress(null);
+    setStatus('disconnected');
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#344afb] relative">
-      <div className="absolute top-0 right-0 w-1/6 h-1/6 overflow-hidden">
-        <Image
-          className="objectContain"
-          src="/img/gm.svg"
-          alt="gm Logo"
-          fill
-          priority
-        />
-      </div>
-      <div className="relative flex flex-col items-center justify-center w-full h-full">
-        <div className="absolute top-24 w-full flex justify-center items-center"></div>
-        <div className="flex items-center justify-center mt-12 relative">
+    <OnchainKitProvider
+      chain={{ name: "Ethereum", chainId: 1 }}
+      schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+    >
+      <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#344afb] relative">
+        <div className="absolute top-0 right-0 w-1/6 h-1/6 overflow-hidden">
           <Image
-            className="w-80 h-80"
-            src="/img/bulmita.png"
-            alt="Left Image"
-            width={320}
-            height={320}
+            className="objectContain"
+            src="/img/gm.svg"
+            alt="gm Logo"
+            fill
             priority
           />
-          <Image
-            className="w-80 h-80"
-            src="/img/vgtbase.png"
-            alt="Right Image"
-            width={320}
-            height={320}
-            priority
-          />
-          <button className="click-me-button absolute bottom-12">
-            CLICK ME
-          </button> {/* Adjusted position */}
         </div>
-      </div>
-      <div className="absolute bottom-0 w-full overflow-hidden">
-        <div className="my-8 flex w-full overflow-hidden whitespace-nowrap text-2xl uppercase text-white">
-          <div className="inline-block marquee flex flex-row items-center whitespace-nowrap">
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>higher.
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>send it
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>it&#39;s time to build
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>WE ARE SO BACK
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>⌐◨-◨
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>GM 🎩
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil degen
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>points, points, points
-            {/* Repeat as needed */}
-            {/* Duplicate the content to create a seamless loop */}
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>higher.
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>send it
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>it&#39;s time to build
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>WE ARE SO BACK
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>⌐◨-◨
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>GM 🎩
-            <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil degen
-            <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>points, points, points
+        <div className="relative flex flex-col items-center justify-center w-full h-full">
+          <div className="absolute top-24 w-full flex justify-center items-center"></div>
+          <div className="flex items-center justify-center mt-12 relative">
+            <Image
+              className="w-80 h-80"
+              src="/img/bulmita.png"
+              alt="Left Image"
+              width={320}
+              height={320}
+              priority
+            />
+            <Image
+              className="w-80 h-80"
+              src="/img/vgtbase.png"
+              alt="Right Image"
+              width={320}
+              height={320}
+              priority
+            />
+            <button
+              className="click-me-button absolute bottom-12"
+              onClick={connectWallet}
+            >
+              LOGIN
+            </button>
           </div>
+          {status === 'connected' && (
+            <div className="flex flex-grow mt-8">
+              <div className="flex h-10 items-center space-x-4">
+                <button type="button" onClick={disconnect}>
+                  {Avatar && <Avatar address={address} showAttestation />}
+                </button>
+                <div className="flex flex-col text-sm">
+                  <b>{Name && <Name address={address} />}</b>
+                  {Name && <Name address={address} showAddress />}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    </main>
+        <BasedText />
+      </main>
+    </OnchainKitProvider>
   );
 }
