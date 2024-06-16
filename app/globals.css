@@ -31,3 +31,50 @@ body {
     text-wrap: balance;
   }
 }
+
+/* globals.css */
+
+.objectContain {
+  object-fit: contain;
+}
+
+.marquee {
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.click-me-button {
+  background-color: rgba(255, 141, 207, var(--tw-bg-opacity));
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 12px;
+}
+
+.click-me-button:hover {
+  background-color: rgba(255, 141, 207, calc(var(--tw-bg-opacity) - 0.1));
+}
+
+.yellow-bg {
+  background: rgb(254, 224, 2);
+}
+
+.pink-bg {
+  background: rgb(255, 141, 207);
+}
+
+
