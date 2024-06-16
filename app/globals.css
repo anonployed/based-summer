@@ -45,22 +45,18 @@ body {
   }
 }
 
-.click-me-button {
-  background-color: rgba(255, 141, 207, var(--tw-bg-opacity));
-  color: white;
-  padding: 15px 30px;
-  border-radius:10px;
-  font-size: 1.5rem;
-  font-weight: bold;
+.magic-orb {
   cursor: pointer;
+  width: 120px;
+  height: 120px;
+  animation: float 5s ease-in-out infinite;
   transition: background-color 0.3s ease;
   position: absolute;
-  bottom: 110px;
+  bottom: 160px;
+  animation: float 4s ease-in-out infinite;
 }
 
-.click-me-button:hover { 
-  background-color: rgba(255, 141, 207, calc(var(--tw-bg-opacity) - 0.1));
-}
+
 
 .yellow-bg {
   background: rgb(254, 224, 2);
@@ -78,7 +74,61 @@ body {
   display: inline-block;
 }
 
+@keyframes float {
+  
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
 
 
+@keyframes sparkle {
+  0%, 100% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+}
 
+.magic-orb::before, .magic-orb::after, .magic-orb .sparkle {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  animation: sparkle 1.5s linear infinite;
+  pointer-events: none;
+}
+
+.magic-orb::before {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0.5s;
+}
+
+.magic-orb::after {
+  top: 80%;
+  left: 70%;
+  animation-delay: 1s;
+}
+
+.magic-orb .sparkle-1 {
+  top: 30%;
+  left: 50%;
+  animation-delay: 1.5s;
+}
+
+.magic-orb .sparkle-2 {
+  top: 60%;
+  left: 30%;
+  animation-delay: 2s;
+}
 
