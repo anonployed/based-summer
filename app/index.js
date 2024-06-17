@@ -1,10 +1,9 @@
-// page.tsx
 "use client";
 
 import OnchainProviders from './OnchainProviders';
-import Home from './Home';
+import Home from './page';
 
-export default function Page() {
+export default function App() {
   return (
     <OnchainProviders>
       <Home />

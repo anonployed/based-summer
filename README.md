@@ -9,8 +9,8 @@
 - [x] Responsive
 - [ ] Add NFT
 - [ ] Read Farcaster info
-- [ ] Add ENS support
-- [ ] Add wallet stuff
+- [x] Add ENS support
+- [x] Add wallet stuff
 - [ ] Paymaster
 - [ ] img resources
 - [ ] css resources
