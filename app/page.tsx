@@ -13,6 +13,7 @@ console.log(OnchainKit);
 export default function Home() {
   const [address, setAddress] = useState(null);
   const [status, setStatus] = useState('disconnected');
+  const [bgImage, setBgImage] = useState('/img/basedbg.png');
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -23,6 +24,19 @@ export default function Home() {
     // const ethereum = walletLink.makeWeb3Provider(rpcEndpoint, 1);
 
     // window.coinbaseEthereum = ethereum;
+
+    const updateBgImage = () => {
+      if (window.innerWidth <= 768) {
+        setBgImage('/img/basedbgphone.png');
+      } else {
+        setBgImage('/img/basedbg.png');
+      }
+    };
+
+    window.addEventListener('resize', updateBgImage);
+    updateBgImage(); // Initial check
+
+    return () => window.removeEventListener('resize', updateBgImage);
   }, []);
 
   const connectWallet = async () => {
@@ -56,8 +70,7 @@ export default function Home() {
         <div className="relative flex items-center justify-center mt-6">
           <div className="relative z-0 flex flex-col bottom-[0px] items-center">
             <Image
-
-              src="/img/basedbg.png" // Aquí se coloca la imagen combinada
+              src={bgImage}
               alt="Combined Background"
               width={700}
               height={550}
