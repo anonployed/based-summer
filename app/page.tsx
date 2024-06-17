@@ -26,7 +26,7 @@ export default function Home() {
     // window.coinbaseEthereum = ethereum;
 
     const updateBgImage = () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 500) {
         setBgImage('/img/basedbgphone.png');
       } else {
         setBgImage('/img/basedbg.png');
@@ -68,7 +68,7 @@ export default function Home() {
       <div className="relative flex flex-col items-center justify-center w-full h-full">
         <div className="absolute top-24 w-full flex justify-center items-center"></div>
         <div className="relative flex items-center justify-center mt-6">
-          <div className="relative z-0 flex flex-col bottom-[0px] items-center">
+          <div className="relative z-0 flex flex-col bottom-[10px] items-center">
             <Image
               src={bgImage}
               alt="Combined Background"
