@@ -5,7 +5,8 @@
 </h1>
 
 <h2>TODO:</h2>
-- [ ] Responsive
+
+- [x] Responsive
 - [ ] Add NFT
 - [ ] Read Farcaster info
 - [ ] Add ENS support
@@ -21,6 +22,7 @@
 - [ ] more abstraction
 - [ ] submit before 30th
 - [ ] check res files performance
+- [ ] improve responsiveness
 
 
 Checklist for Coinbase Smart Wallet
