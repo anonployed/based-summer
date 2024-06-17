@@ -71,7 +71,9 @@ export default function Home() {
           <div className="relative z-0 flex flex-col bottom-[5%] items-center">
             <Image
               src={bgImage}
-              alt="bgimage"
+              alt="Combined Background"
+              width={700}
+              height={550}
               priority
             />
             <img 
