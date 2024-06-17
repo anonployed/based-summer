@@ -83,7 +83,9 @@ export default function Home() {
               onClick={connectWallet} 
             />
           </div>
+          
         </div>
+        <BasedText />
         {status === 'connected' && (
           <div className="flex flex-grow mt-8">
             <div className="flex h-10 items-center space-x-4">
@@ -91,9 +93,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-        )}
+        )} 
       </div>
-      <BasedText />
+
     </main>
   );
 }

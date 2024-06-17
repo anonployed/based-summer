@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BasedText = () => (
-  <div className="absolute bottom-0 w-full overflow-hidden">
+  <div className="relative bottom-0 w-full overflow-hidden">
     <div className="my-8 flex w-full overflow-hidden whitespace-nowrap text-2xl uppercase text-white">
       <div className="inline-block marquee flex flex-row items-center whitespace-nowrap">
         <div className="mx-4 h-4 w-4 rounded-full gm-bg"></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
