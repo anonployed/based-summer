@@ -10,8 +10,6 @@ import BasedText from './BasedText';
 import * as OnchainKit from "@coinbase/onchainkit";
 console.log(OnchainKit);
 
-// const { Avatar, Name } = OnchainKit; // This line is commented out to avoid the error.
-
 export default function Home() {
   const [address, setAddress] = useState(null);
   const [status, setStatus] = useState('disconnected');
@@ -21,10 +19,10 @@ export default function Home() {
       appName: "Based Summer",
     });
 
-    const rpcEndpoint = process.env.NEXT_PUBLIC_RPC_ENDPOINT; // Ensure this variable is defined in Vercel
+    const rpcEndpoint = process.env.NEXT_PUBLIC_RPC_ENDPOINT;
     // const ethereum = walletLink.makeWeb3Provider(rpcEndpoint, 1);
 
-    // window.coinbaseEthereum = ethereum; // Save the Coinbase provider in a different variable
+    // window.coinbaseEthereum = ethereum;
   }, []);
 
   const connectWallet = async () => {
@@ -52,66 +50,37 @@ export default function Home() {
   };
 
   return (
-    /* <OnchainKitProvider
-      chain={{ name: "Ethereum", chainId: 1 }}
-      schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
-    > */
-      <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-[#344afb] relative">
-        <div className="absolute top-0 right-0 w-1/6 h-1/6 overflow-hidden">
-          <Image
-            className="object-contain"
-            src="/img/gm.svg"
-            alt="gm Logo"
-            fill
-            priority
-          />
-        </div>
-        <div className="relative flex flex-col items-center justify-center w-full h-full">
-          <div className="absolute top-24 w-full flex justify-center items-center"></div>
-          <div className="relative flex items-center justify-center mt-6">
-            <div className="relative z-0 flex flex-col bottom-[100px] items-center">
-              <Image
-                src="/img/farca.png"
-                alt="Farca Background"
-                width={700}
-                height={550}
-                priority
-              />
-              <img 
-                className="magic-orb" 
-                src="img/ball.png" 
-                alt="Login" 
-                onClick={connectWallet} 
-              />
-            </div>
+    <main className="flex items-center justify-center bg-[#344afb] fixed w-screen h-screen overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center w-full h-full">
+        <div className="absolute top-24 w-full flex justify-center items-center"></div>
+        <div className="relative flex items-center justify-center mt-6">
+          <div className="relative z-0 flex flex-col bottom-[0px] items-center">
+            <Image
+
+              src="/img/basedbg.png" // Aquí se coloca la imagen combinada
+              alt="Combined Background"
+              width={700}
+              height={550}
+              priority
+            />
+            <img 
+              className="magic-orb" 
+              src="img/ball.png" 
+              alt="Login" 
+              onClick={connectWallet} 
+            />
           </div>
-          <Image
-            className="absolute center left-[250px] bottom-[100px] w-90 h-90 z-30"
-            src="/img/vg.png"
-            alt="Left Image"
-            width={420}
-            height={420}
-            priority
-          />
-          <Image
-            className="absolute center right-[300px] bottom-[100px] w-90 h-90 z-30"
-            src="/img/bulmi.png"
-            alt="Right Image"
-            width={320}
-            height={340}
-            priority
-          />
-          {status === 'connected' && (
-            <div className="flex flex-grow mt-8">
-              <div className="flex h-10 items-center space-x-4">
-                <div className="flex flex-col text-sm">
-                </div>
+        </div>
+        {status === 'connected' && (
+          <div className="flex flex-grow mt-8">
+            <div className="flex h-10 items-center space-x-4">
+              <div className="flex flex-col text-sm">
               </div>
             </div>
-          )}
-        </div>
-        <BasedText />
-      </main>
-    // </OnchainKitProvider>
+          </div>
+        )}
+      </div>
+      <BasedText />
+    </main>
   );
 }
