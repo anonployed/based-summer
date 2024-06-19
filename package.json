@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@coinbase/onchainkit": "^0.20.14",
+    "@airstack/airstack-react": "^0.2.1",
+    "@coinbase/onchainkit": "^0.15.0",
     "@coinbase/wallet-sdk": "^4.0.3",
     "@tanstack/react-query": "^5.45.1",
     "ethers": "^6.13.0",

@@ -8,7 +8,8 @@
 
 - [x] Responsive
 - [ ] Add NFT
-- [ ] Read Farcaster info
+- [x] Read Farcaster info
+- [x] Use Airstack
 - [x] Add ENS support
 - [x] Add wallet stuff
 - [ ] Paymaster

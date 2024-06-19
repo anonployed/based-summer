@@ -1,5 +1,4 @@
 "use client";
-
 import OnchainProviders from './OnchainProviders';
 import Home from './page';
 
