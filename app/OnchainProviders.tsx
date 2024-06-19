@@ -19,7 +19,7 @@ const OnchainProviders = ({ children }: Props) => {
   }
 
   return (
-    <OnchainKitProvider apiKey={apiKey} chain={base}>
+    <OnchainKitProvider chain={base}>
       {children}
     </OnchainKitProvider>
   );
