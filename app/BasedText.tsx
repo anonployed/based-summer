@@ -12,7 +12,7 @@ const BasedText = () => (
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
         <div className="mx-4 h-4 w-4 rounded-full gm-bg"></div>⌐◨-◨
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>GM 🎩
-        <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil degen
+        <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil frok
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>points, points, points
         <div className="mx-4 h-4 w-4 rounded-full gm-bg"></div>BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>higher.
@@ -22,7 +22,7 @@ const BasedText = () => (
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ
         <div className="mx-4 h-4 w-4 rounded-full gm-bg"></div>⌐◨-◨
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>GM 🎩
-        <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil degen
+        <div className="mx-4 h-4 w-4 rounded-full yellow-bg"></div>get me in lil frok
         <div className="mx-4 h-4 w-4 rounded-full pink-bg"></div>points, points, points
       </div>
     </div>

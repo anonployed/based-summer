@@ -136,13 +136,13 @@ const FarcasterQuery = ({ walletAddress }) => {
             <img src="/img/lilnouns.png" alt="Lil Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           </p>
           <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/aerodrome.svg" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+            <img src="/img/aerodrome.png" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           </p>
           <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/synthetix.svg" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+            <img src="/img/synthetix.png" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           </p>
           <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/zora.svg" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+            <img src="/img/zorb.png" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           </p>
         </>
       )}
