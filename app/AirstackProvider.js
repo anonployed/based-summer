@@ -84,7 +84,7 @@ const Home = () => {
                   schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
                 >
                   <div className="flex h-10 items-center space-x-4">
-                    <Avatar address="0x5fa18F60c6e4a08493ABd3A4da7B02E20B0Cb2F9" showAttestation />
+                   
                     <div className="flex flex-col text-sm">
                       <b>
                         <Name address={address} showAttestation/>

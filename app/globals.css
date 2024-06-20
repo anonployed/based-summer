@@ -146,14 +146,19 @@
 
 .wallet-info {
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.836); 
+  padding: 40px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 10; /* Asegura que esté sobre otros elementos */
+  z-index: 10; 
+  height: 35%; 
+}
+
+.nopoweruser {
+  filter: grayscale(100%);
 }

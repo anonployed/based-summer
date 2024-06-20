@@ -85,9 +85,9 @@ const Home = () => {
                   <OnchainKitProvider 
                     chain={base} 
                     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
-                  >
-                    <div className="flex h-10 items-center space-x-4">
-                      <Avatar address={address} showAttestation />
+                  > <Avatar address={address} showAttestation  />
+                    <div className="flex h-20 items-center space-x-4">
+                     
                       <div className="flex flex-col text-sm">
                         <b>
                           <Name address={address} showAttestation/>
