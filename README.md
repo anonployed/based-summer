@@ -18,6 +18,7 @@
 - [ ] NFT art
 - [ ] Pudgy?
 - [X] Nounish art
+- [X] Favicon
 - [ ] orb button?
 - [ ] onchain abstraction
 - [ ] more abstraction
