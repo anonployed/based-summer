@@ -10,7 +10,7 @@ import { base } from 'viem/chains';
 import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
-import './airstack-init'; 
+import './airstack-init';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +20,7 @@ const Home = () => {
   const [bgImage, setBgImage] = useState('/img/basedbg.png');
   const [ethereum, setEthereum] = useState(null);
   const [ensName, setEnsName] = useState(null);
+  const [farcasterImage, setFarcasterImage] = useState(null);
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -74,6 +75,10 @@ const Home = () => {
     }
   };
 
+  const handleProfileImageChange = (image) => {
+    setFarcasterImage(image);
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <main className="flex items-center justify-center bg-ocsblue fixed w-screen h-screen overflow-hidden">
@@ -93,9 +98,11 @@ const Home = () => {
               {status === 'connected' && (
                 <div 
                   className="wallet-info flex flex-col items-center justify-center text-center" 
-                  style={ensName ? { backgroundImage: `url(https://euc.li/${ensName})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+                  style={farcasterImage ? { backgroundImage: `url(${farcasterImage})`, backgroundSize: 'cover', backgroundPosition: 'center' } 
+                                        : ensName ? { backgroundImage: `url(https://euc.li/${ensName})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                                                  : {}}
                 >
-                  <div className="overlay"></div> {/* Layer blanca de 50% de opacidad */}
+                  <div className="overlay"></div> {/* White overlay with 50% opacity */}
                   <OnchainKitProvider 
                     chain={base} 
                     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
@@ -104,7 +111,7 @@ const Home = () => {
                       <div className="flex flex-col text-sm text-center">
                         <b><div style={{ paddingBottom: '15px',display: 'flex', justifyContent: 'center'}}>
                           <Name address={address} showAttestation /></div>
-                          <FarcasterQuery walletAddress={address} />
+                          <FarcasterQuery walletAddress={address} onProfileImageChange={handleProfileImageChange} />
                         </b>
                       </div>
                     </div>
