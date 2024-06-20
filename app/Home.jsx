@@ -1,4 +1,3 @@
-// Home.jsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,7 +5,7 @@ import Image from "next/image";
 import WalletLink from "@coinbase/wallet-sdk";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { OnchainKitProvider } from '@coinbase/onchainkit';
-import { Name, Avatar } from '@coinbase/onchainkit/identity';
+import { Name, getName } from '@coinbase/onchainkit/identity';
 import { base } from 'viem/chains';
 import './globals.css';
 import BasedText from './BasedText';
@@ -20,6 +19,7 @@ const Home = () => {
   const [status, setStatus] = useState('disconnected');
   const [bgImage, setBgImage] = useState('/img/basedbg.png');
   const [ethereum, setEthereum] = useState(null);
+  const [ensName, setEnsName] = useState(null);
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -44,6 +44,16 @@ const Home = () => {
 
     return () => window.removeEventListener('resize', updateBgImage);
   }, []);
+
+  useEffect(() => {
+    const fetchName = async () => {
+      if (address) {
+        const name = await getName({ address });
+        setEnsName(name);
+      }
+    };
+    fetchName();
+  }, [address]);
 
   const toggleWalletConnection = () => {
     if (status === 'disconnected') {
@@ -81,16 +91,19 @@ const Home = () => {
               />
               
               {status === 'connected' && (
-                <div className="wallet-info">
+                <div 
+                  className="wallet-info flex flex-col items-center justify-center text-center" 
+                  style={ensName ? { backgroundImage: `url(https://euc.li/${ensName})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
+                >
+                  <div className="overlay"></div> {/* Layer blanca de 50% de opacidad */}
                   <OnchainKitProvider 
                     chain={base} 
                     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
-                  > <Avatar address={address} showAttestation  />
+                  >
                     <div className="flex h-20 items-center space-x-4">
-                     
-                      <div className="flex flex-col text-sm">
-                        <b>
-                          <Name address={address} showAttestation/>
+                      <div className="flex flex-col text-sm text-center">
+                        <b><div style={{ paddingBottom: '15px',display: 'flex', justifyContent: 'center'}}>
+                          <Name address={address} showAttestation /></div>
                           <FarcasterQuery walletAddress={address} />
                         </b>
                       </div>
