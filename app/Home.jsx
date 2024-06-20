@@ -11,7 +11,7 @@ import { base } from 'viem/chains';
 import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
-import './airstack-init'; // Importar la inicialización de Airstack
+import './airstack-init'; 
 
 const queryClient = new QueryClient();
 
@@ -100,7 +100,7 @@ const Home = () => {
               )}
               <img 
                 className={`magic-orb ${status === 'connected' ? 'connected' : ''}`} 
-                src="img/ball.png" 
+                src="img/ball.png"  
                 alt={status === 'connected' ? 'Disconnect' : 'Connect'} 
                 onClick={toggleWalletConnection} 
               />

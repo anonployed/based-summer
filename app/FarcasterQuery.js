@@ -88,64 +88,84 @@ const FarcasterQuery = ({ walletAddress }) => {
   const isSynthetixUser = data?.Synthetix?.TokenBalance?.length > 0;
   const isZoraUser = data?.Zora?.TokenBalance?.length > 0;
 
-  return (
-    <div>
-      {profileName ? (
-        <>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-            <img src="/img/farcaster.png" alt="Farcaster Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {profileName}
+  const elements = [
+    {
+      condition: profileName,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: profileName ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/farcaster.png" alt="Farcaster Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {profileName}
+          {profileName && (
             <img
               src="/img/ActiveBadge.webp"
               alt="User Badge"
-              className={!isPowerUser ? "nopoweruser" : ""}
-              style={{ width: '20px', height: '20px', marginLeft: '8px' }}
+              style={{
+                width: '20px',
+                height: '20px',
+                marginLeft: '8px',
+                filter: isPowerUser ? 'none' : 'grayscale(100%)'
+              }}
             />
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isNounsHolder ? 'none' : 'grayscale(100%)' }}>
-            <img src="/img/nouns.svg" alt="Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {isNounsHolder && 'Noun'}
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isLilNounsHolder ? 'none' : 'grayscale(100%)' }}>
-            <img src="/img/lilnouns.png" alt="Lil Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {isLilNounsHolder && 'lilNoun'}
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isAerodromeUser ? 'none' : 'grayscale(100%)' }}>
-            <img src="/img/aerodrome.png" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {isAerodromeUser && 'Aerodrome'}
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isSynthetixUser ? 'none' : 'grayscale(100%)' }}>
-            <img src="/img/synthetix.png" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {isSynthetixUser && 'Synthetix User'}
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isZoraUser ? 'none' : 'grayscale(100%)' }}>
-            <img src="/img/zorb.png" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            {isZoraUser && 'Zora User'}
-          </p>
-        </>
-      ) : (
-        <>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/farcaster.png" alt="Farcaster Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-            No user
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/nouns.svg" alt="Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/lilnouns.png" alt="Lil Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/aerodrome.png" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/synthetix.png" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-          </p>
-          <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: 'grayscale(100%)' }}>
-            <img src="/img/zorb.png" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
-          </p>
-        </>
-      )}
+          )}
+        </p>
+      )
+    },
+    {
+      condition: isNounsHolder,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isNounsHolder ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/nouns.svg" alt="Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {isNounsHolder && 'nouner'}
+        </p>
+      )
+    },
+    {
+      condition: isLilNounsHolder,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isLilNounsHolder ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/lilnouns.png" alt="Lil Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {isLilNounsHolder && 'lil nouner'}
+        </p>
+      )
+    },
+    {
+      condition: isAerodromeUser,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isAerodromeUser ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/aerodrome.png" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {isAerodromeUser && 'Aero Miles'}
+        </p>
+      )
+    },
+    {
+      condition: isSynthetixUser,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isSynthetixUser ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/synthetix.png" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {isSynthetixUser && 'Spartan'}
+        </p>
+      )
+    },
+    {
+      condition: isZoraUser,
+      content: (
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isZoraUser ? 'none' : 'grayscale(100%)' }}>
+          <img src="/img/zorb.png" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
+          {isZoraUser && 'Enjoy'}
+        </p>
+      )
+    }
+  ];
+
+  const sortedElements = elements.sort((a, b) => (a.condition ? -1 : 1));
+
+  return (
+    <div>
+      {sortedElements.map((element, index) => (
+        <React.Fragment key={index}>
+          {element.content}
+        </React.Fragment>
+      ))}
     </div>
   );
 };

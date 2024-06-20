@@ -150,7 +150,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.836); 
-  padding: 40px;
+  padding: 20px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -162,3 +162,8 @@
 .nopoweruser {
   filter: grayscale(100%);
 }
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
