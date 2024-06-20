@@ -174,7 +174,19 @@
 }
 
 
+@font-face {
+  font-family: 'BritneyOnchain';
+  src: url('/font/BritneyOnchain-Style01.otf') format('opentype');
+}
 
+.ocs-font {
+  font-family: 'BritneyOnchain', sans-serif;
+}
+@media (max-width: 768px) {
+  .responsive-ocs {
+    font-size: 1.875rem; /* text-3xl */
+  }
+}
 
 .nopoweruser {
   filter: grayscale(100%);

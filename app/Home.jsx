@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     const walletLink = new WalletLink({
-      appName: "Based Summer",
+      appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
     });
 
     const rpcEndpoint = process.env.NEXT_PUBLIC_RPC_ENDPOINT;
@@ -85,8 +85,19 @@ const Home = () => {
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
           <div className="relative flex items-center justify-center mt-6">
+          <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)' }}>
+  <span>ᗷ</span>
+  <span className="ocs-font">a</span>
+  <span>ᔑ</span>
+  <span>E</span>
+  <span>ᗪ ᔑ</span>
+  <span className="ocs-font font-normal">u</span>
+  <span>M</span>
+  <span className="ocs-font font-normal">m</span>
+  <span className="ocs-font font-normal">e</span>
+  <span>ᖇ</span>
+</div>
             <div className="relative z-0 flex flex-col items-center">
-              
               <Image
                 src={bgImage}
                 alt="Combined Background"
