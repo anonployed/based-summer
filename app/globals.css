@@ -156,7 +156,7 @@
   align-items: center;
   gap: 10px;
   z-index: 10; 
-  height: 35%; 
+  height: 38%; 
   background-size: cover; /* Ensure the background image covers the div */
   background-position: center; /* Center the background image */
 }
