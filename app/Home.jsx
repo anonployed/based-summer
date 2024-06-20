@@ -45,32 +45,33 @@ const Home = () => {
     return () => window.removeEventListener('resize', updateBgImage);
   }, []);
 
-  const connectWallet = () => {
-    console.log("Connecting wallet...");
-    if (ethereum) {
-      ethereum.enable().then((accounts) => {
-        setAddress(accounts[0]);
-        setStatus('connected');
-      }).catch((error) => {
-        console.error("Error connecting wallet:", error);
-      });
+  const toggleWalletConnection = () => {
+    if (status === 'disconnected') {
+      console.log("Connecting wallet...");
+      if (ethereum) {
+        ethereum.enable().then((accounts) => {
+          setAddress(accounts[0]);
+          setStatus('connected');
+        }).catch((error) => {
+          console.error("Error connecting wallet:", error);
+        });
+      } else {
+        console.error("Ethereum provider is not set");
+      }
     } else {
-      console.error("Ethereum provider is not set");
+      setAddress(null);
+      setStatus('disconnected');
     }
-  };
-
-  const disconnect = () => {
-    setAddress(null);
-    setStatus('disconnected');
   };
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="flex items-center justify-center bg-[#344afb] fixed w-screen h-screen overflow-hidden">
+      <main className="flex items-center justify-center bg-ocsblue fixed w-screen h-screen overflow-hidden">
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
           <div className="relative flex items-center justify-center mt-6">
-            <div className="relative z-0 flex flex-col bottom-[0%] items-center">
+            <div className="relative z-0 flex flex-col items-center">
+              
               <Image
                 src={bgImage}
                 alt="Combined Background"
@@ -78,28 +79,30 @@ const Home = () => {
                 height={450}
                 priority
               />
+              
               {status === 'connected' && (
-                <OnchainKitProvider 
-                  chain={base} 
-                  schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
-                >
-                  <div className="flex h-10 items-center space-x-4">
-                    <Avatar address={address} showAttestation />
-                    <div className="flex flex-col text-sm">
-                      <b>
-                        <Name address={address} showAttestation/>
-                      </b>
-                      <FarcasterQuery walletAddress={address} />
+                <div className="wallet-info">
+                  <OnchainKitProvider 
+                    chain={base} 
+                    schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
+                  >
+                    <div className="flex h-10 items-center space-x-4">
+                      <Avatar address={address} showAttestation />
+                      <div className="flex flex-col text-sm">
+                        <b>
+                          <Name address={address} showAttestation/>
+                          <FarcasterQuery walletAddress={address} />
+                        </b>
+                      </div>
                     </div>
-                  </div>
-                  <button onClick={disconnect}>Disconnect</button>
-                </OnchainKitProvider>
-              )} 
+                  </OnchainKitProvider>
+                </div>
+              )}
               <img 
-                className="magic-orb" 
+                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`} 
                 src="img/ball.png" 
-                alt="Login" 
-                onClick={connectWallet} 
+                alt={status === 'connected' ? 'Disconnect' : 'Connect'} 
+                onClick={toggleWalletConnection} 
               />
             </div>
           </div>

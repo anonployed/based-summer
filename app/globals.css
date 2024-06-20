@@ -44,6 +44,24 @@
 .pink-bg {
   background: rgb(255, 141, 207);
 }
+.bg-ocsblue {
+  background-color: #0052ff
+}
+
+.bg-ocspink {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 141 207/var(--tw-bg-opacity))
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity))
+}
+
+.bg-yellow {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 210 0/var(--tw-bg-opacity))
+}
 
 .gm-bg {
   background-image: url("../public/img/gm2.svg");
@@ -111,4 +129,31 @@
   animation-delay: 2s;
 }
 
+.magic-orb {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  animation: float 5s ease-in-out infinite;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 160px;
+  animation: float 4s ease-in-out infinite;
+}
 
+.magic-orb.connected {
+  filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
+}
+
+.wallet-info {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10; /* Asegura que esté sobre otros elementos */
+}
