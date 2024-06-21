@@ -11,6 +11,7 @@ import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
 import './airstack-init';
+import checkIfJesseIsBald from './checkIfJesseIsBald'; // Import the function
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,8 @@ const Home = () => {
   const [ethereum, setEthereum] = useState(null);
   const [ensName, setEnsName] = useState(null);
   const [farcasterImage, setFarcasterImage] = useState(null);
+  const [showGif, setShowGif] = useState(false);
+  const [isHolder, setIsHolder] = useState(false); // New state to track holder status
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -49,8 +52,11 @@ const Home = () => {
   useEffect(() => {
     const fetchName = async () => {
       if (address) {
+        console.log(`Fetching ENS name for address: ${address}`);
         const name = await getName({ address });
+        console.log(`ENS name: ${name}`);
         setEnsName(name);
+        await verifyHolderStatus(address);
       }
     };
     fetchName();
@@ -61,8 +67,12 @@ const Home = () => {
       console.log("Connecting wallet...");
       if (ethereum) {
         ethereum.enable().then((accounts) => {
+          console.log(`Wallet connected: ${accounts[0]}`);
           setAddress(accounts[0]);
           setStatus('connected');
+          if (isHolder) {
+            showGifAnimation();
+          }
         }).catch((error) => {
           console.error("Error connecting wallet:", error);
         });
@@ -70,12 +80,37 @@ const Home = () => {
         console.error("Ethereum provider is not set");
       }
     } else {
+      console.log("Disconnecting wallet...");
       setAddress(null);
       setStatus('disconnected');
     }
   };
 
+  const verifyHolderStatus = async (address) => {
+    try {
+      console.log(`Verifying holder status for address: ${address}`);
+      const holderStatus = await checkIfJesseIsBald(address);
+      setIsHolder(holderStatus);
+      if (holderStatus) {
+        showGifAnimation();
+      } else {
+        console.log("Address is not a holder");
+      }
+    } catch (error) {
+      console.error("Error checking holder:", error);
+    }
+  };
+
+  const showGifAnimation = () => {
+    setShowGif(true);
+    setTimeout(() => {
+      setShowGif(false);
+      console.log("Hiding GIF after 3 seconds");
+    }, 3000); // Hide GIF after 3 seconds
+  };
+
   const handleProfileImageChange = (image) => {
+    console.log(`Profile image changed: ${image}`);
     setFarcasterImage(image);
   };
 
@@ -85,19 +120,19 @@ const Home = () => {
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
           <div className="relative flex items-center justify-center mt-6">
-          <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)' }}>
-  <span>ᗷ</span>
-  <span className="ocs-font">a</span>
-  <span>ᔑ</span>
-  <span>E</span>
-  <span>ᗪ ᔑ</span>
-  <span className="ocs-font font-normal">u</span>
-  <span>M</span>
-  <span className="ocs-font font-normal">m</span>
-  <span className="ocs-font font-normal">e</span>
-  <span>ᖇ</span>
-</div>
-            <div className="relative z-0 flex flex-col items-center">
+            <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)' }}>
+              <span>ᗷ</span>
+              <span className="ocs-font">a</span>
+              <span>ᔑ</span>
+              <span>E</span>
+              <span>ᗪ ᔑ</span>
+              <span className="ocs-font font-normal">u</span>
+              <span>M</span>
+              <span className="ocs-font font-normal">m</span>
+              <span className="ocs-font font-normal">e</span>
+              <span>ᖇ</span>
+            </div>
+            <div className="relative flex flex-col items-center z-3">
               <Image
                 src={bgImage}
                 alt="Combined Background"
@@ -105,23 +140,29 @@ const Home = () => {
                 height={450}
                 priority
               />
-              
               {status === 'connected' && (
-                <div 
-                  className="wallet-info flex flex-col items-center justify-center text-center" 
-                  style={farcasterImage ? { backgroundImage: `url(${farcasterImage})`, backgroundSize: 'cover', backgroundPosition: 'center' } 
-                                        : ensName ? { backgroundImage: `url(https://euc.li/${ensName})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-                                                  : {}}
+                <div
+                  className="wallet-info flex flex-col items-center justify-center text-center relative"
+                  style={
+                    showGif 
+                      ? { backgroundImage: `url(/img/bald.gif)`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                      : farcasterImage 
+                        ? { backgroundImage: `url(${farcasterImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                        : ensName 
+                          ? { backgroundImage: `url(https://euc.li/${ensName})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                          : {}
+                  }
                 >
                   <div className="overlay"></div> {/* White overlay with 50% opacity */}
-                  <OnchainKitProvider 
-                    chain={base} 
+                  <OnchainKitProvider
+                    chain={base}
                     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
                   >
                     <div className="flex h-20 items-center space-x-4">
                       <div className="flex flex-col text-sm text-center">
-                        <b><div style={{ paddingBottom: '15px',display: 'flex', justifyContent: 'center'}}>
-                          <Name address={address} showAttestation /></div>
+                        <b>
+                          <div style={{ paddingBottom: '15px', display: 'flex', justifyContent: 'center' }}>
+                            <Name address={address} showAttestation /></div>
                           <FarcasterQuery walletAddress={address} onProfileImageChange={handleProfileImageChange} />
                         </b>
                       </div>
@@ -129,11 +170,11 @@ const Home = () => {
                   </OnchainKitProvider>
                 </div>
               )}
-              <img 
-                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`} 
-                src="img/ball.png"  
-                alt={status === 'connected' ? 'Disconnect' : 'Connect'} 
-                onClick={toggleWalletConnection} 
+              <img
+                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`}
+                src="img/ball.png"
+                alt={status === 'connected' ? 'Disconnect' : 'Connect'}
+                onClick={toggleWalletConnection}
               />
             </div>
           </div>
