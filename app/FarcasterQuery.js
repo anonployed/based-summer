@@ -18,22 +18,30 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
           }
         }
       }
-      nouns: Accounts(
-        input: {filter: {tokenAddress: {_eq: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"}}, blockchain: ethereum, limit: 50}
+      nouns: TokenBalances(
+        input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03"}}, blockchain: ethereum, limit: 50}
       ) {
-        Account {
-          address {
-            addresses
-          }
+        TokenBalance {
+          tokenAddress
+          tokenId
+          formattedAmount
+        }
+        pageInfo {
+          nextCursor
+          prevCursor
         }
       }
-      lilNouns: Accounts(
-        input: {filter: {tokenAddress: {_eq: "0x4b10701Bfd7BFEdc47d50562b76b436fbB5BdB3B"}}, blockchain: ethereum, limit: 50}
+      lilNouns: TokenBalances(
+        input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0x4b10701bfd7bfedc47d50562b76b436fbb5bdb3b"}}, blockchain: ethereum, limit: 50}
       ) {
-        Account {
-          address {
-            addresses
-          }
+        TokenBalance {
+          tokenAddress
+          tokenId
+          formattedAmount
+        }
+        pageInfo {
+          nextCursor
+          prevCursor
         }
       }
       Aerodrome: TokenBalances(
@@ -82,10 +90,10 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
 
   const profile = data?.Ethereum?.TokenBalance?.[0]?.owner?.socials?.[0];
   const profileName = profile?.profileName;
-  const profileImage= profile?.profileImage;
+  const profileImage = profile?.profileImage;
   const isPowerUser = profile?.isFarcasterPowerUser;
-  const isNounsHolder = data?.nouns?.Account?.some(account => account.address.addresses.includes(walletAddress));
-  const isLilNounsHolder = data?.lilNouns?.Account?.some(account => account.address.addresses.includes(walletAddress));
+  const isNounsHolder = data?.nouns?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
+  const isLilNounsHolder = data?.lilNouns?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
   const isAerodromeUser = data?.Aerodrome?.TokenBalance?.length > 0;
   const isSynthetixUser = data?.Synthetix?.TokenBalance?.length > 0;
   const isZoraUser = data?.Zora?.TokenBalance?.length > 0;
