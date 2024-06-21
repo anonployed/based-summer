@@ -45,32 +45,34 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
         }
       }
       Aerodrome: TokenBalances(
-        input: {filter: {owner: {_eq: "${walletAddress}"}}, blockchain: base, limit: 50}
-      ) {
-        TokenBalance {
-          tokenAddress
-          tokenId
-          formattedAmount
-        }
+    input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0x940181a94a35a4569e4529a3cdfb74e38fd98631"}}, blockchain: base, limit: 50}
+  ) {
+    TokenBalance {
+      owner {
+        identity
       }
+      formattedAmount
+      tokenAddress
+    }
+  }
       Synthetix: TokenBalances(
-        input: {filter: {owner: {_eq: "${walletAddress}"}}, blockchain: ethereum, limit: 50}
-      ) {
-        TokenBalance {
-          tokenAddress
-          tokenId
-          formattedAmount
-        }
+    input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f"}}, blockchain: ethereum, limit: 50}
+  ) {
+    TokenBalance {
+      owner {
+        identity
       }
+      formattedAmount
+      tokenAddress
+    }
+  }
       Zora: TokenBalances(
         input: {filter: {owner: {_eq: "${walletAddress}"}}, blockchain: zora, limit: 50}
-      ) {
-        TokenBalance {
-          tokenAddress
-          tokenId
-          formattedAmount
-        }
-      }
+  ) {
+    TokenBalance {
+      formattedAmount
+    }
+  }
     }
   `;
 
@@ -94,9 +96,9 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
   const isPowerUser = profile?.isFarcasterPowerUser;
   const isNounsHolder = data?.nouns?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
   const isLilNounsHolder = data?.lilNouns?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
-  const isAerodromeUser = data?.Aerodrome?.TokenBalance?.length > 0;
-  const isSynthetixUser = data?.Synthetix?.TokenBalance?.length > 0;
-  const isZoraUser = data?.Zora?.TokenBalance?.length > 0;
+  const isAerodromeUser = data?.Aerodrome?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
+  const isSynthetixUser = data?.Synthetix?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
+  const isZoraUser = data?.Zora?.TokenBalance?.some(balance => parseFloat(balance.formattedAmount) > 0);
 
   // Notify parent component about the Farcaster profile image
   if (profileImage) {
