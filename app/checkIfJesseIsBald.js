@@ -35,7 +35,7 @@ const checkIfJesseIsBald = async (address) => {
       return false;
     }
 
-    // Adjust according to the response structure from Coinbase API
+    // Adjust according to the response structure from the API
     const isHolder = data.result.balances.some(balance => 
       balance.asset.type === 'erc721' && 
       balance.asset.groupId.toLowerCase() === '0xb27b1369808c817d61baca58833232f97add28ea'
