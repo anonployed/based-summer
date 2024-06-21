@@ -8,7 +8,7 @@ import { OnchainKitProvider} from '@coinbase/onchainkit';
 type Props = { children: ReactNode };
 
 const OnchainProviders = ({ children }: Props) => {
-  const apiKey = process.env.NEXT_PUBLIC_RPC_ENDPOINT_BASE_SEPOLIA;
+  const apiKey = process.env.NEXT_PUBLIC_RPC_ENDPOINT;
 
   console.log("API Key from environment:", apiKey); 
   console.log("Project ID from environment:", process.env.NEXT_PUBLIC_PROJECT_ID);
