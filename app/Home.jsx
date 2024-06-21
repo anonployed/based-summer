@@ -23,7 +23,8 @@ const Home = () => {
   const [ensName, setEnsName] = useState(null);
   const [farcasterImage, setFarcasterImage] = useState(null);
   const [showGif, setShowGif] = useState(false);
-  const [isHolder, setIsHolder] = useState(false); // New state to track holder status
+  const [isHolder, setIsHolder] = useState(false);
+  const [showMintButton, setShowMintButton] = useState(false); // New state for mint button
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -73,6 +74,7 @@ const Home = () => {
           if (isHolder) {
             showGifAnimation();
           }
+          setTimeout(() => setShowMintButton(true), 1000); // Show mint button after 1 second
         }).catch((error) => {
           console.error("Error connecting wallet:", error);
         });
@@ -83,6 +85,15 @@ const Home = () => {
       console.log("Disconnecting wallet...");
       setAddress(null);
       setStatus('disconnected');
+      const mintButton = document.querySelector('.mint-button');
+      if (mintButton) {
+        mintButton.classList.add('hide-mint-button');
+        setTimeout(() => {
+          setShowMintButton(false); // Hide mint button after animation
+        }, 200); // Duration of slide-down animation
+      } else {
+        setShowMintButton(false); // Hide mint button if not found
+      }
     }
   };
 
@@ -112,6 +123,19 @@ const Home = () => {
   const handleProfileImageChange = (image) => {
     console.log(`Profile image changed: ${image}`);
     setFarcasterImage(image);
+  };
+
+  const handleMintButtonClick = () => {
+    const mintButton = document.querySelector('.mint-button');
+    if (mintButton) {
+      mintButton.classList.add('hide-mint-button');
+      setTimeout(() => {
+        setShowMintButton(false); // Hide mint button after animation
+      }, 200); // Duration of slide-down animation
+    } else {
+      setShowMintButton(false); // Hide mint button if not found
+    }
+    // Add any additional logic for the mint button click here
   };
 
   return (
@@ -176,6 +200,14 @@ const Home = () => {
                 alt={status === 'connected' ? 'Disconnect' : 'Connect'}
                 onClick={toggleWalletConnection}
               />
+              {showMintButton && (
+                <img
+                  src="img/mint.png"
+                  alt="Mint"
+                  className="mint-button"
+                  onClick={handleMintButtonClick} // Add the click event handler here
+                />
+              )}
             </div>
           </div>
           <BasedText />
