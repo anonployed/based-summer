@@ -11,7 +11,6 @@ const OnchainProviders = ({ children }: Props) => {
   const apiKey = process.env.NEXT_PUBLIC_RPC_ENDPOINT_BASE_SEPOLIA;
 
   console.log("API Key from environment:", apiKey); 
-  console.log("Network from environment:", process.env.NEXT_PUBLIC_NETWORK); 
   console.log("Project ID from environment:", process.env.NEXT_PUBLIC_PROJECT_ID);
 
   if (!apiKey) {
