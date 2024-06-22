@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import WalletLink from "@coinbase/wallet-sdk";
@@ -11,8 +9,9 @@ import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
 import './airstack-init';
-import checkIfJesseIsBald from './checkIfJesseIsBald'; // Import the function
-import PreloadImage from './PreloadImage'; // Import the preloading component
+import checkIfJesseIsBald from './checkIfJesseIsBald';
+import PreloadImage from './PreloadImage';
+import { disconnect } from "process";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +24,8 @@ const Home = () => {
   const [farcasterImage, setFarcasterImage] = useState(null);
   const [showGif, setShowGif] = useState(false);
   const [isHolder, setIsHolder] = useState(false);
-  const [showMintButton, setShowMintButton] = useState(false); // New state for mint button
+  const [showMintButton, setShowMintButton] = useState(false);
+  const [showSummerImage, setShowSummerImage] = useState(false);
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -46,7 +46,7 @@ const Home = () => {
     };
 
     window.addEventListener('resize', updateBgImage);
-    updateBgImage(); // Initial check
+    updateBgImage();
 
     return () => window.removeEventListener('resize', updateBgImage);
   }, []);
@@ -76,8 +76,8 @@ const Home = () => {
           if (isHolder) {
             showGifAnimation();
           }
-          const delay = isBald ? 4000 : 1000; // 3 seconds more if Jesse is bald
-          setTimeout(() => setShowMintButton(true), delay); // Show mint button after delay
+          const delay = isBald ? 4000 : 1000;
+          setTimeout(() => setShowMintButton(true), delay);
         }).catch((error) => {
           console.error("Error connecting wallet:", error);
         });
@@ -92,10 +92,10 @@ const Home = () => {
       if (mintButton) {
         mintButton.classList.add('hide-mint-button');
         setTimeout(() => {
-          setShowMintButton(false); // Hide mint button after animation
-        }, 200); // Duration of slide-down animation
+          setShowMintButton(false);
+        }, 200);
       } else {
-        setShowMintButton(false); // Hide mint button if not found
+        setShowMintButton(false);
       }
     }
   };
@@ -120,7 +120,7 @@ const Home = () => {
     setTimeout(() => {
       setShowGif(false);
       console.log("Hiding GIF after 2.5 seconds");
-    }, 2500); // Hide GIF after 2.5 seconds
+    }, 2500);
   };
 
   const handleProfileImageChange = (image) => {
@@ -129,25 +129,22 @@ const Home = () => {
   };
 
   const handleMintButtonClick = () => {
-    const mintButton = document.querySelector('.mint-button');
-    if (mintButton) {
-      mintButton.classList.add('hide-mint-button');
-      setTimeout(() => {
-        setShowMintButton(false); // Hide mint button after animation
-      }, 200); // Duration of slide-down animation
-    } else {
-      setShowMintButton(false); // Hide mint button if not found
-    }
-    // Add any additional logic for the mint button click here
+    setShowSummerImage(true);
+    toggleWalletConnection();
   };
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PreloadImage src="/img/mint.png" /> {/* Preload the mint.png image */}
+      <PreloadImage src="/img/mint.png" />
       <main className="flex items-center justify-center bg-ocsblue fixed w-screen h-screen overflow-hidden">
         <div className="relative flex flex-col items-center justify-center w-full h-full">
+          {showSummerImage && (
+            <div className="summer">
+              <div className="moving-background"></div>
+            </div>
+          )}
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
-          <div className="relative flex items-center justify-center mt-6">
+          <div className="relative flex items-center justify-center mt-6 z-10">
             <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)' }}>
               <span>ᗷ</span>
               <span className="ocs-font">a</span>
@@ -181,7 +178,7 @@ const Home = () => {
                           : {}
                   }
                 >
-                  <div className="overlay"></div> {/* White overlay with 50% opacity */}
+                  <div className="overlay"></div>
                   <OnchainKitProvider
                     chain={base}
                     schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
@@ -208,8 +205,8 @@ const Home = () => {
                 <img
                   src="img/mint.png"
                   alt="Mint"
-                  className="mint-button "
-                  onClick={handleMintButtonClick} // Add the click event handler here
+                  className="mint-button"
+                  onClick={handleMintButtonClick}
                 />
               )}
             </div>

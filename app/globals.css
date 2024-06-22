@@ -264,4 +264,69 @@
   }
 }
 
+@keyframes mistFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(30px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(15px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
 
+.summer {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 75vh; 
+  overflow: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initially hidden */
+  animation: mistFadeIn 2s ease-in-out forwards; /* Add animation */
+}
+
+.moving-background {
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/summer.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: 0% 50%; 
+  animation: moveLeftRight 20s infinite alternate ease-in-out; 
+}
+
+/* Keyframe animation for moving background left to right and back */
+@keyframes moveLeftRight {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Media query for mobile devices to slow down the animation and adjust height */
+@media (max-width: 600px) {
+  .summer {
+    height: 70vh;
+  }
+
+  .moving-background {
+    animation: moveLeftRight 40s infinite alternate ease-in-out;
+  }
+}
+.baldmagic {
+  opacity: 0;
+  animation: mistFadeIn 0s ease-in-out forwards, mistFadeOut 0.5s forwards;
+}
