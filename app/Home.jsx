@@ -67,14 +67,16 @@ const Home = () => {
     if (status === 'disconnected') {
       console.log("Connecting wallet...");
       if (ethereum) {
-        ethereum.enable().then((accounts) => {
+        ethereum.enable().then(async (accounts) => {
           console.log(`Wallet connected: ${accounts[0]}`);
           setAddress(accounts[0]);
           setStatus('connected');
+          const isBald = await checkIfJesseIsBald(accounts[0]);
           if (isHolder) {
             showGifAnimation();
           }
-          setTimeout(() => setShowMintButton(true), 1000); // Show mint button after 1 second
+          const delay = isBald ? 4000 : 1000; // 3 seconds more if Jesse is bald
+          setTimeout(() => setShowMintButton(true), delay); // Show mint button after delay
         }).catch((error) => {
           console.error("Error connecting wallet:", error);
         });
@@ -116,8 +118,8 @@ const Home = () => {
     setShowGif(true);
     setTimeout(() => {
       setShowGif(false);
-      console.log("Hiding GIF after 3 seconds");
-    }, 3000); // Hide GIF after 3 seconds
+      console.log("Hiding GIF after 2.5 seconds");
+    }, 2500); // Hide GIF after 2.5 seconds
   };
 
   const handleProfileImageChange = (image) => {

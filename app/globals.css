@@ -228,32 +228,37 @@
 .hide-mint-button {
   animation: slide-down 0.2s ease-out;
 }
-/* phone*/
+/* phone */
 @media only screen and (max-width: 600px) {
   .mint-button {
     width: 30%;
     height: 50%;
-    bottom: -10%;
-    right: 50%;
-    transform: translate(50%, 0);
+    bottom: -30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
   }
 
   @keyframes slide-up {
     from {
-      transform: translateY(100%);
+      transform: translate(-50%, 50%);
     }
     to {
-      transform: translateY(0%);
+      transform: translate(-50%, 0%);
     }
   }
 
   @keyframes slide-down {
     from {
-      transform: translateY(0%);
+      transform: translate(-50%, 0%);
     }
     to {
-      transform: translateY(100%);
+      transform: translate(-50%, 100%);
     }
+  }
+
+  .mint-button {
+    animation: slide-up 0.2s ease-out;
   }
 
   .hide-mint-button {
