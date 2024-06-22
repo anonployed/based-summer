@@ -12,6 +12,7 @@ import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
 import './airstack-init';
 import checkIfJesseIsBald from './checkIfJesseIsBald'; // Import the function
+import PreloadImage from './PreloadImage'; // Import the preloading component
 
 const queryClient = new QueryClient();
 
@@ -142,6 +143,7 @@ const Home = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PreloadImage src="/img/mint.png" /> {/* Preload the mint.png image */}
       <main className="flex items-center justify-center bg-ocsblue fixed w-screen h-screen overflow-hidden">
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
