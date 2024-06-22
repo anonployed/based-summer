@@ -133,11 +133,10 @@
   cursor: pointer;
   width: 120px;
   height: 120px;
-  animation: float 5s ease-in-out infinite;
-  transition: background-color 0.3s ease;
+  animation: float 2s ease-in-out infinite;
+  transition: background-color 0.5s ease;
   position: absolute;
   bottom: 160px;
-  animation: float 4s ease-in-out infinite;
 }
 
 .magic-orb.connected {
@@ -201,8 +200,7 @@
   bottom: -10%;
   right: 50%;
   transform: translate(50%, 50%);
-  width: 25%;
-  height: 80%;
+  height: 85%;
   z-index: 1000;
   animation: slide-up 0.6s ease-out;
 }
@@ -265,3 +263,5 @@
     animation: slide-down 0.2s ease-out;
   }
 }
+
+

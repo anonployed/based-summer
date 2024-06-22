@@ -197,7 +197,7 @@ const Home = () => {
                 </div>
               )}
               <img
-                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`}
+                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`} 
                 src="img/ball.png"
                 alt={status === 'connected' ? 'Disconnect' : 'Connect'}
                 onClick={toggleWalletConnection}
@@ -206,7 +206,7 @@ const Home = () => {
                 <img
                   src="img/mint.png"
                   alt="Mint"
-                  className="mint-button"
+                  className="mint-button "
                   onClick={handleMintButtonClick} // Add the click event handler here
                 />
               )}
