@@ -5,13 +5,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { Name, getName } from '@coinbase/onchainkit/identity';
 import { base } from 'viem/chains';
+import { BrowserProvider, Contract, MaxUint256 } from 'ethers'; // Correct imports for ethers@6
 import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
 import './airstack-init';
 import checkIfJesseIsBald from './checkIfJesseIsBald';
 import PreloadImage from './PreloadImage';
-import { disconnect } from "process";
+
 
 const queryClient = new QueryClient();
 
@@ -32,9 +33,10 @@ const Home = () => {
       appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
     });
 
-    const rpcEndpoint = process.env.NEXT_PUBLIC_RPC_ENDPOINT;
+    const baseChainId = 8453; // Base chain ID
+    const rpcEndpoint = 	"https://mainnet.base.org"; // Ensure this is the Base network endpoint
 
-    const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, 1);
+    const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, baseChainId);
     setEthereum(ethereumProvider);
 
     const updateBgImage = () => {
@@ -128,10 +130,178 @@ const Home = () => {
     setFarcasterImage(image);
   };
 
-  const handleMintButtonClick = () => {
+  
+  const handleMintButtonClick = async () => {
     setShowSummerImage(true);
+  
+    try {
+      if (!ethereum || !address) {
+        console.error("Ethereum provider or address is not set");
+        return;
+      }
+  
+      const baseNetwork = {
+        chainId: '0x2105', // Hexadecimal representation of 8453
+        chainName: 'Base Network',
+        nativeCurrency: {
+          name: 'Base Coin',
+          symbol: 'BASE',
+          decimals: 18,
+        },
+        rpcUrls: ['https://mainnet.base.org'],
+        blockExplorerUrls: ['https://base-network-explorer-url'],
+      };
+  
+      const currentChainId = await ethereum.request({ method: 'eth_chainId' });
+      if (currentChainId !== baseNetwork.chainId) {
+        try {
+          await ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: baseNetwork.chainId }],
+          });
+        } catch (switchError) {
+          if (switchError.code === 4902) {
+            try {
+              await ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [baseNetwork],
+              });
+            } catch (addError) {
+              console.error('Failed to add Base network to wallet:', addError);
+              return;
+            }
+          } else {
+            console.error('Failed to switch to Base network:', switchError);
+            return;
+          }
+        }
+      }
+  
+      const provider = new BrowserProvider(ethereum);
+      const signer = await provider.getSigner();
+      const contractAddress = "0x550a11A25884f2f90603B2F0635fb805A290A3e0"; // Contract address
+      const abi = [
+        {
+          "type": "function",
+          "name": "claim",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "_receiver",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_tokenId",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "_quantity",
+              "internalType": "uint256"
+            },
+            {
+              "type": "address",
+              "name": "_currency",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "_pricePerToken",
+              "internalType": "uint256"
+            },
+            {
+              "type": "tuple",
+              "name": "_allowlistProof",
+              "components": [
+                {
+                  "type": "bytes32[]",
+                  "name": "proof",
+                  "internalType": "bytes32[]"
+                },
+                {
+                  "type": "uint256",
+                  "name": "quantityLimitPerWallet",
+                  "internalType": "uint256"
+                },
+                {
+                  "type": "uint256",
+                  "name": "pricePerToken",
+                  "internalType": "uint256"
+                },
+                {
+                  "type": "address",
+                  "name": "currency",
+                  "internalType": "address"
+                }
+              ],
+              "internalType": "struct IDrop1155.AllowlistProof"
+            },
+            {
+              "type": "bytes",
+              "name": "_data",
+              "internalType": "bytes"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "payable"
+        }
+      ];
+  
+      const contract = new Contract(contractAddress, abi, signer);
+  
+      // Define the correct parameters
+      const tokenId = 0; // Replace with the correct token ID
+      const quantity = 1; // Replace with the correct quantity to claim
+      const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // Replace with the correct currency address
+      const pricePerToken = 0; // Replace with the correct price per token
+      const proof = []; // Replace with the correct proof if applicable
+      const quantityLimitPerWallet = 1; // Replace with the correct quantity limit per wallet
+      const allowlistProof = {
+        proof: proof,
+        quantityLimitPerWallet: quantityLimitPerWallet,
+        pricePerToken: pricePerToken,
+        currency: currency
+      };
+      const data = "0x"; // Additional data if required
+  
+      console.log("Starting NFT claim transaction...");
+      console.log("Parameters:", {
+        receiver: address,
+        tokenId: tokenId,
+        quantity: quantity,
+        currency: currency,
+        pricePerToken: pricePerToken,
+        allowlistProof: allowlistProof,
+        data: data
+      });
+  
+      const gasLimit = 300000; // Set a reasonable gas limit based on contract complexity
+  
+      const tx = await contract.claim(
+        address,
+        tokenId,
+        quantity,
+        currency,
+        pricePerToken,
+        allowlistProof,
+        data,
+        { gasLimit }
+      );
+  
+      await tx.wait();
+      console.log("NFT claimed successfully!");
+    } catch (error) {
+      if (error.code === 4001) {
+        console.error("User rejected the transaction");
+      } else {
+        console.error("Error claiming NFT:", error);
+      }
+    }
+  
     toggleWalletConnection();
   };
+  
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -179,10 +349,7 @@ const Home = () => {
                   }
                 >
                   <div className="overlay"></div>
-                  <OnchainKitProvider
-                    chain={base}
-                    schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
-                  >
+                  <OnchainKitProvider chain={base} schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9">
                     <div className="flex h-20 items-center space-x-4">
                       <div className="flex flex-col text-sm text-center">
                         <b>
@@ -203,6 +370,7 @@ const Home = () => {
               />
               {showMintButton && (
                 <img
+                  chain={base}
                   src="img/mint.png"
                   alt="Mint"
                   className="mint-button"

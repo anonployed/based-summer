@@ -13,7 +13,7 @@
     "@coinbase/onchainkit": "^0.15.0",
     "@coinbase/wallet-sdk": "^4.0.3",
     "@tanstack/react-query": "^5.45.1",
-    "ethers": "^6.13.0",
+    "ethers": "^6.13.1",
     "magic.css": "^1.4.8",
     "next": "^14.2.4",
     "react": "^18",
