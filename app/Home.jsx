@@ -114,6 +114,7 @@ const Home = () => {
   const initializeEthereumProvider = () => {
     const walletLink = new WalletLink({
       appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+      appLogoUrl: "/favicon.png"
     });
 
     const baseChainId = 8453;
