@@ -132,6 +132,7 @@ const Home = () => {
 
   
   const handleMintButtonClick = async () => {
+    toggleWalletConnection();
     setShowSummerImage(true);
     await new Promise(resolve => setTimeout(resolve, 4000));  
     try {
@@ -299,8 +300,6 @@ const Home = () => {
         console.error("Error claiming NFT:", error);
       }
     }
-  
-    toggleWalletConnection();
   };
   
 
