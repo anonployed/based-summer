@@ -36,6 +36,10 @@
   width: 60px;
   height: 60px;
 }
+.magic-orb.smaller {
+  width: 30px;
+  height: 30px;
+}
 
 .blue-bg {
   background: #0052ff;
@@ -136,6 +140,9 @@
 
 .magic-orb.connected {
   filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
+}
+.pointer {
+  cursor: pointer !important;; 
 }
 
 .wallet-info {

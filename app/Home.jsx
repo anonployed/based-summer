@@ -26,6 +26,8 @@ const Home = () => {
   const [isHolder, setIsHolder] = useState(false);
   const [showMintButton, setShowMintButton] = useState(false);
   const [showSummerImage, setShowSummerImage] = useState(false);
+  const [isBallSmall, setIsBallSmall] = useState(false);
+  const [isBallSmaller, setIsBallSmaller] = useState(false);
 
   useEffect(() => {
     const walletLink = new WalletLink({
@@ -38,6 +40,7 @@ const Home = () => {
 
     const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, baseChainId);
     setEthereum(ethereumProvider);
+    
 
     const updateBgImage = () => {
       if (window.innerWidth <= 500) {
@@ -167,14 +170,20 @@ const Home = () => {
 
   const handleMintButtonClick = async () => {
     hideAll();
+    if (isBallSmall) {
+      setIsBallSmaller(true); 
+    } else {
+      setIsBallSmall(true);  
+    }
     setShowSummerImage(true);
-    await new Promise(resolve => setTimeout(resolve, 2500));  
+    await new Promise(resolve => setTimeout(resolve, 2500));
+  
     try {
       if (!ethereum || !address) {
         console.error("Ethereum provider or address is not set");
         return;
       }
-
+  
       const baseNetwork = {
         chainId: '0x2105',
         chainName: 'Base Network',
@@ -186,7 +195,7 @@ const Home = () => {
         rpcUrls: ['https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO'],
         blockExplorerUrls: ['https://basescan.org/'],
       };
-
+  
       const currentChainId = await ethereum.request({ method: 'eth_chainId' });
       if (currentChainId !== baseNetwork.chainId) {
         try {
@@ -211,7 +220,7 @@ const Home = () => {
           }
         }
       }
-
+  
       const provider = new BrowserProvider(ethereum);
       const signer = await provider.getSigner();
       const contractAddress = "0x550a11A25884f2f90603B2F0635fb805A290A3e0";
@@ -282,9 +291,9 @@ const Home = () => {
           "stateMutability": "payable"
         }
       ];
-
+  
       const contract = new Contract(contractAddress, abi, signer);
-
+  
       const maxID = 1;
       const tokenId = Math.floor(Math.random() * (maxID + 1));
       const quantity = 1;
@@ -299,7 +308,7 @@ const Home = () => {
         currency: currency
       };
       const data = "0x";
-
+  
       console.log("Starting NFT claim transaction...");
       console.log("Parameters:", {
         receiver: address,
@@ -310,9 +319,9 @@ const Home = () => {
         allowlistProof: allowlistProof,
         data: data
       });
-
+  
       const gasLimit = 300000;
-
+  
       const tx = await contract.claim(
         address,
         tokenId,
@@ -323,7 +332,7 @@ const Home = () => {
         data,
         { gasLimit }
       );
-
+  
       await tx.wait();
       console.log("NFT claimed successfully!");
     } catch (error) {
@@ -334,6 +343,7 @@ const Home = () => {
       }
     }
   };
+  
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -394,19 +404,23 @@ const Home = () => {
                   </OnchainKitProvider>
                 </div>
               )}
-              <img
-                className={`magic-orb ${status === 'connected' ? 'connected' : ''}`} 
-                src="img/ball.png"
-                alt={status === 'connected' ? 'Disconnect' : 'Connect'}
-                onClick={toggleWalletConnection}
-              />
+           <img
+  className={`magic-orb ${isBallSmaller ? 'smaller' : isBallSmall ? 'small' : ''} ${status === 'connected' ? 'connected' : ''} ${status === 'connected' ? 'pointer' : ''}`}
+  src="img/ball.png"
+  alt={status === 'connected' ? 'Disconnect' : 'Connect'}
+  onClick={toggleWalletConnection}
+  style={{ cursor: 'pointer' }}
+/>
+
+
               {showMintButton && (
                 <img
                   chain={base}
                   src="img/mint.png"
                   alt="Mint"
-                  className="mint-button"
+                  className="mint-button pointer"
                   onClick={handleMintButtonClick}
+                  style={{ cursor: 'pointer' }}
                 />
               )}
             </div>
