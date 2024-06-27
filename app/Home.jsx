@@ -134,7 +134,7 @@ const Home = () => {
   const handleMintButtonClick = async () => {
     toggleWalletConnection();
     setShowSummerImage(true);
-    await new Promise(resolve => setTimeout(resolve, 4000));  
+    await new Promise(resolve => setTimeout(resolve, 2500));  
     try {
       if (!ethereum || !address) {
         console.error("Ethereum provider or address is not set");
