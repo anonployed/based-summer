@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: 'https://basedsummer.vercel.app/summer.jpg',
+        url: 'https://basedsummer.vercel.app/img/summer.jpg',
         width: 800,
         height: 600,
         alt: 'BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes'
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: 'https://basedsummer.vercel.app/summer.jpg'
+    images: 'https://basedsummer.vercel.app/img/summer.jpg'
   }
 };
 
