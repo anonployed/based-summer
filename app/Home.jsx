@@ -177,7 +177,7 @@ const Home = () => {
     }
     setShowSummerImage(true);
     await new Promise(resolve => setTimeout(resolve, 2500));
-  
+    
     try {
       if (!ethereum || !address) {
         console.error("Ethereum provider or address is not set");
@@ -366,7 +366,7 @@ const Home = () => {
               <span className="ocs-font font">u</span>
               <span>M</span>
               <span className="ocs-font1 font-normal">m</span>
-              <span className="ocs-font font-normal">e</span>
+              <span className="ocs-fontbig font-normal">e</span>
               <span>ᖇ</span>
             </div>
             <div className="relative flex flex-col items-center z-3">
@@ -415,6 +415,7 @@ const Home = () => {
 
               {showMintButton && (
                 <img
+                  
                   chain={base}
                   src="img/mint.png"
                   alt="Mint"
