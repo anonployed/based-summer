@@ -416,7 +416,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  animation: mistFadeIn 2s ease-in-out forwards;
+  animation: mistFadeIn 1s ease-in-out forwards;
 }
 
 .moving-background {
@@ -456,4 +456,9 @@
   animation:
     mistFadeIn 0s ease-in-out forwards,
     mistFadeOut 0.5s forwards;
+}
+
+.gradient-overlay {
+
+    mask-image: linear-gradient(to bottom, #0052ff 85%, transparent 100%);
 }

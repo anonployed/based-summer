@@ -360,7 +360,7 @@ const Home = () => {
       <main className="flex items-center justify-center bg-ocsblue fixed w-screen h-screen overflow-hidden">
         <div className="relative flex flex-col items-center justify-center w-full h-full">
           {showSummerImage && (
-            <div className="summer">
+            <div className="summer gradient-overlay">
               <div className="moving-background"></div>
             </div>
           )}
