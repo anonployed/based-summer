@@ -375,11 +375,11 @@ const Home = () => {
               }}
             >
               <span>ᗷ</span>
-              <span className="ocs-font">a</span>
+              <span className="ocs-font font-normal">a</span>
               <span>ᔑ</span>
               <span>E</span>
               <span>ᗪ ᔑ</span>
-              <span className="ocs-font font">u</span>
+              <span className="ocs-font font-normal">u</span>
               <span>M</span>
               <span className="ocs-font1 font-normal">m</span>
               <span className="ocs-fontbig font-normal">e</span>
