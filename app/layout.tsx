@@ -5,8 +5,22 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Based Summer",
-  description: "gm",
+  title: "BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+  description: "Mint BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes on Base",
+  openGraph: {
+    images: [
+      {
+        url: 'https://basedsummer.vercel.app/summer.jpg',
+        width: 800,
+        height: 600,
+        alt: 'BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: 'https://basedsummer.vercel.app/summer.jpg'
+  }
 };
 
 export default function RootLayout({
