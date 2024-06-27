@@ -45,34 +45,34 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
         }
       }
       Aerodrome: TokenBalances(
-    input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0x940181a94a35a4569e4529a3cdfb74e38fd98631"}}, blockchain: base, limit: 50}
-  ) {
-    TokenBalance {
-      owner {
-        identity
+        input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0x940181a94a35a4569e4529a3cdfb74e38fd98631"}}, blockchain: base, limit: 50}
+      ) {
+        TokenBalance {
+          owner {
+            identity
+          }
+          formattedAmount
+          tokenAddress
+        }
       }
-      formattedAmount
-      tokenAddress
-    }
-  }
       Synthetix: TokenBalances(
-    input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f"}}, blockchain: ethereum, limit: 50}
-  ) {
-    TokenBalance {
-      owner {
-        identity
+        input: {filter: {owner: {_eq: "${walletAddress}"}, tokenAddress: {_eq: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f"}}, blockchain: ethereum, limit: 50}
+      ) {
+        TokenBalance {
+          owner {
+            identity
+          }
+          formattedAmount
+          tokenAddress
+        }
       }
-      formattedAmount
-      tokenAddress
-    }
-  }
       Zora: TokenBalances(
         input: {filter: {owner: {_eq: "${walletAddress}"}}, blockchain: zora, limit: 50}
-  ) {
-    TokenBalance {
-      formattedAmount
-    }
-  }
+      ) {
+        TokenBalance {
+          formattedAmount
+        }
+      }
     }
   `;
 
@@ -109,7 +109,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: profileName,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: profileName ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: profileName ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="You own a Farcaster account">
           <img src="/img/farcaster.png" alt="Farcaster Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {profileName}
           {profileName && (
@@ -122,6 +123,7 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
                 marginLeft: '8px',
                 filter: isPowerUser ? 'none' : 'grayscale(100%)'
               }}
+              title="POWER USER on Warpcast"
             />
           )}
         </p>
@@ -130,7 +132,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: isNounsHolder,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isNounsHolder ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isNounsHolder ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="You're a Nouns holder">
           <img src="/img/nouns.svg" alt="Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {isNounsHolder && 'nouner'}
         </p>
@@ -139,7 +142,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: isLilNounsHolder,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isLilNounsHolder ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isLilNounsHolder ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="You're a Lil Nouns holder">
           <img src="/img/lilnouns.png" alt="Lil Noun Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {isLilNounsHolder && 'lil nouner'}
         </p>
@@ -148,7 +152,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: isAerodromeUser,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isAerodromeUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isAerodromeUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="Aerodrome user">
           <img src="/img/aerodrome.png" alt="Aerodrome Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {isAerodromeUser && 'Aero Miles'}
         </p>
@@ -157,7 +162,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: isSynthetixUser,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isSynthetixUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isSynthetixUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="Synthethix user on mainnet">
           <img src="/img/synthetix.png" alt="Synthetix Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {isSynthetixUser && 'Spartan'}
         </p>
@@ -166,7 +172,8 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
     {
       condition: isZoraUser,
       content: (
-        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isZoraUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+        <p style={{ display: 'flex', alignItems: 'center', marginBottom: '8px', filter: isZoraUser ? 'none' : 'grayscale(100%)', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+           title="Enjoyed something on zora">
           <img src="/img/zorb.png" alt="Zora Logo" style={{ width: '20px', height: '20px', marginRight: '8px' }} />
           {isZoraUser && 'Enjoy'}
         </p>

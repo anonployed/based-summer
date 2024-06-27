@@ -26,11 +26,16 @@
   cursor: pointer;
   width: 120px;
   height: 120px;
-  animation: float 5s ease-in-out infinite;
-  transition: background-color 0.3s ease;
+  animation: float 2s ease-in-out infinite;
+  transition: background-color 0.5s ease, width 0.5s ease, height 0.5s ease;
   position: absolute;
   bottom: 160px;
-  animation: float 4s ease-in-out infinite;
+}
+
+/* Optional: to animate the change */
+.magic-orb.small {
+  width: 60px;
+  height: 60px;
 }
 
 .blue-bg {
@@ -141,6 +146,21 @@
 
 .magic-orb.connected {
   filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
+}
+.magic-orb {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  animation: float 2s ease-in-out infinite;
+  transition: background-color 0.5s ease, width 0.5s ease, height 0.5s ease;
+  position: absolute;
+  bottom: 160px;
+}
+
+/* Optional: to animate the change */
+.magic-orb.small {
+  width: 60px;
+  height: 60px;
 }
 
 .wallet-info {

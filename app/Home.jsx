@@ -133,7 +133,7 @@ const Home = () => {
   
   const handleMintButtonClick = async () => {
     setShowSummerImage(true);
-  
+    await new Promise(resolve => setTimeout(resolve, 4000));  
     try {
       if (!ethereum || !address) {
         console.error("Ethereum provider or address is not set");
