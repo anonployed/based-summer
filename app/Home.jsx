@@ -5,14 +5,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { Name, getName } from '@coinbase/onchainkit/identity';
 import { base } from 'viem/chains';
-import { BrowserProvider, Contract, MaxUint256 } from 'ethers'; // Correct imports for ethers@6
+import { BrowserProvider, Contract, MaxUint256 } from 'ethers';
 import './globals.css';
 import BasedText from './BasedText';
 import FarcasterQuery from './FarcasterQuery';
 import './airstack-init';
 import checkIfJesseIsBald from './checkIfJesseIsBald';
 import PreloadImage from './PreloadImage';
-
 
 const queryClient = new QueryClient();
 
@@ -33,8 +32,8 @@ const Home = () => {
       appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
     });
 
-    const baseChainId = 8453; // Base chain ID
-    const rpcEndpoint = 	"https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO"; // Ensure this is the Base network endpoint
+    const baseChainId = 8453;
+    const rpcEndpoint = "https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO";
 
     const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, baseChainId);
     setEthereum(ethereumProvider);
@@ -66,41 +65,65 @@ const Home = () => {
     fetchName();
   }, [address]);
 
-  const toggleWalletConnection = () => {
-    if (status === 'disconnected') {
-      console.log("Connecting wallet...");
-      if (ethereum) {
-        ethereum.enable().then(async (accounts) => {
-          console.log(`Wallet connected: ${accounts[0]}`);
-          setAddress(accounts[0]);
-          setStatus('connected');
-          const isBald = await checkIfJesseIsBald(accounts[0]);
-          if (isHolder) {
-            showGifAnimation();
-          }
-          const delay = isBald ? 4000 : 1000;
-          setTimeout(() => setShowMintButton(true), delay);
-        }).catch((error) => {
-          console.error("Error connecting wallet:", error);
-        });
-      } else {
-        console.error("Ethereum provider is not set");
-      }
+  const connectWallet = () => {
+    console.log("Connecting wallet...");
+    if (ethereum) {
+      ethereum.enable().then(async (accounts) => {
+        console.log(`Wallet connected: ${accounts[0]}`);
+        setAddress(accounts[0]);
+        setStatus('connected');
+        const isBald = await checkIfJesseIsBald(accounts[0]);
+        if (isHolder) {
+          showGifAnimation();
+        }
+        const delay = isBald ? 4000 : 1000;
+        setTimeout(() => setShowMintButton(true), delay);
+      }).catch((error) => {
+        console.error("Error connecting wallet:", error);
+      });
     } else {
-      console.log("Disconnecting wallet...");
-      setAddress(null);
-      setStatus('disconnected');
-      const mintButton = document.querySelector('.mint-button');
-      if (mintButton) {
-        mintButton.classList.add('hide-mint-button');
-        setTimeout(() => {
-          setShowMintButton(false);
-        }, 200);
-      } else {
-        setShowMintButton(false);
-      }
+      console.error("Ethereum provider is not set");
     }
   };
+
+  const disconnectWallet = () => {
+    console.log("Disconnecting wallet...");
+    setAddress(null);
+    setStatus('disconnected');
+    if (ethereum && ethereum.disconnect) {
+      ethereum.disconnect();
+    }
+    setEthereum(null);
+    initializeEthereumProvider();
+    hideAll();
+  };
+
+  const hideAll = () => {
+    setStatus('disconnected');
+    const mintButton = document.querySelector('.mint-button');
+    if (mintButton) {
+      mintButton.classList.add('hide-mint-button');
+      setTimeout(() => {
+        setShowMintButton(false);
+      }, 200);
+    } else {
+      setShowMintButton(false);
+    }
+  };
+
+  const initializeEthereumProvider = () => {
+    const walletLink = new WalletLink({
+      appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+    });
+
+    const baseChainId = 8453;
+    const rpcEndpoint = "https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO";
+
+    const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, baseChainId);
+    setEthereum(ethereumProvider);
+  };
+
+
 
   const verifyHolderStatus = async (address) => {
     try {
@@ -129,10 +152,18 @@ const Home = () => {
     console.log(`Profile image changed: ${image}`);
     setFarcasterImage(image);
   };
-
   
+  const toggleWalletConnection = () => {
+    if (status === 'disconnected') {
+      connectWallet();
+    } else {
+      disconnectWallet();
+    }
+  };
+
+
   const handleMintButtonClick = async () => {
-    toggleWalletConnection();
+    hideAll();
     setShowSummerImage(true);
     await new Promise(resolve => setTimeout(resolve, 2500));  
     try {
@@ -140,9 +171,9 @@ const Home = () => {
         console.error("Ethereum provider or address is not set");
         return;
       }
-  
+
       const baseNetwork = {
-        chainId: '0x2105', // Hexadecimal representation of 8453
+        chainId: '0x2105',
         chainName: 'Base Network',
         nativeCurrency: {
           name: 'Base Coin',
@@ -152,7 +183,7 @@ const Home = () => {
         rpcUrls: ['https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO'],
         blockExplorerUrls: ['https://basescan.org/'],
       };
-  
+
       const currentChainId = await ethereum.request({ method: 'eth_chainId' });
       if (currentChainId !== baseNetwork.chainId) {
         try {
@@ -177,10 +208,10 @@ const Home = () => {
           }
         }
       }
-  
+
       const provider = new BrowserProvider(ethereum);
       const signer = await provider.getSigner();
-      const contractAddress = "0x550a11A25884f2f90603B2F0635fb805A290A3e0"; // Contract address
+      const contractAddress = "0x550a11A25884f2f90603B2F0635fb805A290A3e0";
       const abi = [
         {
           "type": "function",
@@ -248,25 +279,24 @@ const Home = () => {
           "stateMutability": "payable"
         }
       ];
-  
+
       const contract = new Contract(contractAddress, abi, signer);
-  
-      // Define the correct parameters
+
       const maxID = 1;
       const tokenId = Math.floor(Math.random() * (maxID + 1));
-      const quantity = 1; // Replace with the correct quantity to claim
-      const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // Replace with the correct currency address
-      const pricePerToken = 0; // Replace with the correct price per token
-      const proof = []; // Replace with the correct proof if applicable
-      const quantityLimitPerWallet = 1; // Replace with the correct quantity limit per wallet
+      const quantity = 1;
+      const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+      const pricePerToken = 0;
+      const proof = [];
+      const quantityLimitPerWallet = 1;
       const allowlistProof = {
         proof: proof,
         quantityLimitPerWallet: quantityLimitPerWallet,
         pricePerToken: pricePerToken,
         currency: currency
       };
-      const data = "0x"; // Additional data if required
-  
+      const data = "0x";
+
       console.log("Starting NFT claim transaction...");
       console.log("Parameters:", {
         receiver: address,
@@ -277,9 +307,9 @@ const Home = () => {
         allowlistProof: allowlistProof,
         data: data
       });
-  
-      const gasLimit = 300000; // Set a reasonable gas limit based on contract complexity
-  
+
+      const gasLimit = 300000;
+
       const tx = await contract.claim(
         address,
         tokenId,
@@ -290,7 +320,7 @@ const Home = () => {
         data,
         { gasLimit }
       );
-  
+
       await tx.wait();
       console.log("NFT claimed successfully!");
     } catch (error) {
@@ -301,7 +331,6 @@ const Home = () => {
       }
     }
   };
-  
 
   return (
     <QueryClientProvider client={queryClient}>

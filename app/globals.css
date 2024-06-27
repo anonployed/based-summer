@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -32,8 +31,8 @@
   bottom: 160px;
 }
 
-/* Optional: to animate the change */
 .magic-orb.small {
+  cursor: pointer;
   width: 60px;
   height: 60px;
 }
@@ -49,23 +48,24 @@
 .pink-bg {
   background: rgb(255, 141, 207);
 }
+
 .bg-ocsblue {
-  background-color: #0052ff
+  background-color: #0052ff;
 }
 
 .bg-ocspink {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 141 207/var(--tw-bg-opacity))
+  background-color: rgb(255 141 207 / var(--tw-bg-opacity));
 }
 
 .bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255/var(--tw-bg-opacity))
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-yellow {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 210 0/var(--tw-bg-opacity))
+  background-color: rgb(255 210 0 / var(--tw-bg-opacity));
 }
 
 .gm-bg {
@@ -77,37 +77,37 @@
 }
 
 @keyframes float {
-  
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
-
 
 @keyframes sparkle {
   0%, 100% {
-      opacity: 0;
+    opacity: 0;
   }
   50% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
-.magic-orb::before, .magic-orb::after, .magic-orb .sparkle {
+.magic-orb::before,
+.magic-orb::after,
+.magic-orb .sparkle {
   content: '';
   position: absolute;
   width: 15px;
   height: 15px;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
   border-radius: 50%;
   animation: sparkle 1.5s linear infinite;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .magic-orb::before {
@@ -134,33 +134,8 @@
   animation-delay: 2s;
 }
 
-.magic-orb {
-  cursor: pointer;
-  width: 120px;
-  height: 120px;
-  animation: float 2s ease-in-out infinite;
-  transition: background-color 0.5s ease;
-  position: absolute;
-  bottom: 160px;
-}
-
 .magic-orb.connected {
   filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
-}
-.magic-orb {
-  cursor: pointer;
-  width: 120px;
-  height: 120px;
-  animation: float 2s ease-in-out infinite;
-  transition: background-color 0.5s ease, width 0.5s ease, height 0.5s ease;
-  position: absolute;
-  bottom: 160px;
-}
-
-/* Optional: to animate the change */
-.magic-orb.small {
-  width: 60px;
-  height: 60px;
 }
 
 .wallet-info {
@@ -168,18 +143,17 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.836); 
+  background: rgba(255, 255, 255, 0.836);
   padding: 20px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 10; 
-  height: 38%; 
-  background-size: cover; /* Ensure the background image covers the div */
-  background-position: center; /* Center the background image */
+  z-index: 10;
+  height: 38%;
+  background-size: cover;
+  background-position: center;
 }
-
 
 .overlay {
   position: absolute;
@@ -189,9 +163,8 @@
   height: 100%;
   border-radius: 10%;
   background-color: rgba(255, 255, 255, 0.88);
-  z-index: -1; /* Ensure the overlay is on top of the background image */
+  z-index: -1;
 }
-
 
 @font-face {
   font-family: 'BritneyOnchain';
@@ -201,6 +174,7 @@
 .ocs-font {
   font-family: 'BritneyOnchain', sans-serif;
 }
+
 @media (max-width: 768px) {
   .responsive-ocs {
     font-size: 1.875rem; /* text-3xl */
@@ -221,6 +195,7 @@
   right: 50%;
   transform: translate(50%, 50%);
   height: 85%;
+  cursor: pointer;
   z-index: 1000;
   animation: slide-up 0.6s ease-out;
 }
@@ -246,7 +221,7 @@
 .hide-mint-button {
   animation: slide-down 0.2s ease-out;
 }
-/* phone */
+
 @media only screen and (max-width: 600px) {
   .mint-button {
     width: 30%;
@@ -255,6 +230,7 @@
     left: 50%;
     transform: translate(-50%, 0);
     position: absolute;
+    cursor: pointer;
   }
 
   @keyframes slide-up {
@@ -301,29 +277,28 @@
 
 .summer {
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
   width: 100%;
-  height: 75vh; 
-  overflow: hidden; 
+  height: 75vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Initially hidden */
-  animation: mistFadeIn 2s ease-in-out forwards; /* Add animation */
+  opacity: 0;
+  animation: mistFadeIn 2s ease-in-out forwards;
 }
 
 .moving-background {
   width: 100%;
   height: 100%;
   background-image: url('/img/summer.jpg');
-  background-size: cover; 
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: 0% 50%; 
-  animation: moveLeftRight 20s infinite alternate ease-in-out; 
+  background-position: 0% 50%;
+  animation: moveLeftRight 20s infinite alternate ease-in-out;
 }
 
-/* Keyframe animation for moving background left to right and back */
 @keyframes moveLeftRight {
   0% {
     background-position: 0% 50%;
@@ -336,7 +311,6 @@
   }
 }
 
-/* Media query for mobile devices to slow down the animation and adjust height */
 @media (max-width: 600px) {
   .summer {
     height: 70vh;
@@ -346,6 +320,7 @@
     animation: moveLeftRight 40s infinite alternate ease-in-out;
   }
 }
+
 .baldmagic {
   opacity: 0;
   animation: mistFadeIn 0s ease-in-out forwards, mistFadeOut 0.5s forwards;
