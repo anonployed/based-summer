@@ -34,7 +34,7 @@ const Home = () => {
     });
 
     const baseChainId = 8453; // Base chain ID
-    const rpcEndpoint = 	"https://mainnet.base.org"; // Ensure this is the Base network endpoint
+    const rpcEndpoint = 	"https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO"; // Ensure this is the Base network endpoint
 
     const ethereumProvider = walletLink.makeWeb3Provider(rpcEndpoint, baseChainId);
     setEthereum(ethereumProvider);
@@ -148,8 +148,8 @@ const Home = () => {
           symbol: 'BASE',
           decimals: 18,
         },
-        rpcUrls: ['https://mainnet.base.org'],
-        blockExplorerUrls: ['https://base-network-explorer-url'],
+        rpcUrls: ['https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO'],
+        blockExplorerUrls: ['https://basescan.org/'],
       };
   
       const currentChainId = await ethereum.request({ method: 'eth_chainId' });
@@ -251,7 +251,8 @@ const Home = () => {
       const contract = new Contract(contractAddress, abi, signer);
   
       // Define the correct parameters
-      const tokenId = 0; // Replace with the correct token ID
+      const maxID = 1;
+      const tokenId = Math.floor(Math.random() * (maxID + 1));
       const quantity = 1; // Replace with the correct quantity to claim
       const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // Replace with the correct currency address
       const pricePerToken = 0; // Replace with the correct price per token
