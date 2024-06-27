@@ -10,17 +10,17 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: 'https://basedsummer.vercel.app/img/summer.jpg',
+        url: "https://basedsummer.vercel.app/img/summer.jpg",
         width: 800,
         height: 600,
-        alt: 'BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes'
-      }
-    ]
+        alt: "BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes",
+      },
+    ],
   },
   twitter: {
-    card: 'summary_large_image',
-    images: 'https://basedsummer.vercel.app/img/summer.jpg'
-  }
+    card: "summary_large_image",
+    images: "https://basedsummer.vercel.app/img/summer.jpg",
+  },
 };
 
 export default function RootLayout({

@@ -17,8 +17,8 @@
 - [ ] css resources
 - [ ] NFT art
 - [ ] Pudgy?
-- [X] Nounish art
-- [X] Favicon
+- [x] Nounish art
+- [x] Favicon
 - [ ] orb button?
 - [ ] onchain abstraction
 - [ ] more abstraction
@@ -26,8 +26,8 @@
 - [ ] check res files performance
 - [ ] improve responsiveness
 
-
 Checklist for Coinbase Smart Wallet
+
 - [x] Dependencies in package.json
   - @coinbase/wallet-sdk
 - [ ] Initialization and configuration in the main code file
@@ -35,17 +35,20 @@ Checklist for Coinbase Smart Wallet
 - [ ] Instant wallet creation with passkey
 
 Checklist for OnchainKit
+
 - [x] Dependencies in package.json
   - @coinbase/onchainkit
 - [ ] Initialization and configuration in the main code file
 - [ ] Use of React components and TypeScript utilities
 
 Checklist for Coinbase Onchain Verifications
+
 - [ ] Dependencies in package.json (potentially @coinbase/onchainkit)
 - [ ] Initialization and configuration in the main code file
 - [ ] Implementation for unlocking onchain experiences and rewards
 
 Checklist for Paymaster and Bundler
+
 - [ ] Check if specific SDK is required
 - [ ] Initialization and configuration in the main code file
 - [ ] Implementation of gas sponsorship functionality

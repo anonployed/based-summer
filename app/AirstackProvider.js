@@ -4,21 +4,21 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import WalletLink from "@coinbase/wallet-sdk";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { OnchainKitProvider } from '@coinbase/onchainkit';
-import { Name, Avatar } from '@coinbase/onchainkit/identity';
-import { base } from 'viem/chains';
-import './globals.css';
-import BasedText from './BasedText';
-import FarcasterQuery from './FarcasterQuery';
-import './airstack-init'; // Importar la inicialización de Airstack
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { OnchainKitProvider } from "@coinbase/onchainkit";
+import { Name, Avatar } from "@coinbase/onchainkit/identity";
+import { base } from "viem/chains";
+import "./globals.css";
+import BasedText from "./BasedText";
+import FarcasterQuery from "./FarcasterQuery";
+import "./airstack-init"; // Importar la inicialización de Airstack
 
 const queryClient = new QueryClient();
 
 const Home = () => {
   const [address, setAddress] = useState(null);
-  const [status, setStatus] = useState('disconnected');
-  const [bgImage, setBgImage] = useState('/img/basedbg.png');
+  const [status, setStatus] = useState("disconnected");
+  const [bgImage, setBgImage] = useState("/img/basedbg.png");
   const [ethereum, setEthereum] = useState(null);
 
   useEffect(() => {
@@ -33,27 +33,30 @@ const Home = () => {
 
     const updateBgImage = () => {
       if (window.innerWidth <= 500) {
-        setBgImage('/img/basedbgphone.png');
+        setBgImage("/img/basedbgphone.png");
       } else {
-        setBgImage('/img/basedbg.png');
+        setBgImage("/img/basedbg.png");
       }
     };
 
-    window.addEventListener('resize', updateBgImage);
+    window.addEventListener("resize", updateBgImage);
     updateBgImage(); // Initial check
 
-    return () => window.removeEventListener('resize', updateBgImage);
+    return () => window.removeEventListener("resize", updateBgImage);
   }, []);
 
   const connectWallet = () => {
     console.log("Connecting wallet...");
     if (ethereum) {
-      ethereum.enable().then((accounts) => {
-        setAddress(accounts[0]);
-        setStatus('connected');
-      }).catch((error) => {
-        console.error("Error connecting wallet:", error);
-      });
+      ethereum
+        .enable()
+        .then((accounts) => {
+          setAddress(accounts[0]);
+          setStatus("connected");
+        })
+        .catch((error) => {
+          console.error("Error connecting wallet:", error);
+        });
     } else {
       console.error("Ethereum provider is not set");
     }
@@ -61,7 +64,7 @@ const Home = () => {
 
   const disconnect = () => {
     setAddress(null);
-    setStatus('disconnected');
+    setStatus("disconnected");
   };
 
   return (
@@ -78,28 +81,27 @@ const Home = () => {
                 height={450}
                 priority
               />
-              {status === 'connected' && (
-                <OnchainKitProvider 
-                  chain={base} 
+              {status === "connected" && (
+                <OnchainKitProvider
+                  chain={base}
                   schemaId="0xf8b05c79f090979bf4a80270aba232dff11a10d9ca55c4f88de95317970f0de9"
                 >
                   <div className="flex h-10 items-center space-x-4">
-                   
                     <div className="flex flex-col text-sm">
                       <b>
-                        <Name address={address} showAttestation/>
+                        <Name address={address} showAttestation />
                       </b>
                       <FarcasterQuery walletAddress={address} />
                     </div>
                   </div>
                   <button onClick={disconnect}>Disconnect</button>
                 </OnchainKitProvider>
-              )} 
-              <img 
-                className="magic-orb" 
-                src="img/ball.png" 
-                alt="Login" 
-                onClick={connectWallet} 
+              )}
+              <img
+                className="magic-orb"
+                src="img/ball.png"
+                alt="Login"
+                onClick={connectWallet}
               />
             </div>
           </div>

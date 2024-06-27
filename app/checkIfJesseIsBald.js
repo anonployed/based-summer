@@ -9,36 +9,38 @@ const checkIfJesseIsBald = async (address) => {
 
   try {
     const response = await fetch(endpoint, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "jsonrpc": "2.0",
-        "id": 1,
-        "method": "cdp_listBalances",
-        "params": [
+        jsonrpc: "2.0",
+        id: 1,
+        method: "cdp_listBalances",
+        params: [
           {
-            "address": address,
-            "pageToken": "",
-            "pageSize": 100
-          }
-        ]
-      })
+            address: address,
+            pageToken: "",
+            pageSize: 100,
+          },
+        ],
+      }),
     });
 
     const data = await response.json();
-    console.log('API response data:', data);
+    console.log("API response data:", data);
 
     if (!data.result || !data.result.balances) {
-      console.warn('No balances found:', data);
+      console.warn("No balances found:", data);
       return false;
     }
 
     // Adjust according to the response structure from the API
-    const isHolder = data.result.balances.some(balance => 
-      balance.asset.type === 'erc721' && 
-      balance.asset.groupId.toLowerCase() === '0xb27b1369808c817d61baca58833232f97add28ea'
+    const isHolder = data.result.balances.some(
+      (balance) =>
+        balance.asset.type === "erc721" &&
+        balance.asset.groupId.toLowerCase() ===
+          "0xb27b1369808c817d61baca58833232f97add28ea",
     );
     console.log(`Is holder: ${isHolder}`);
     return isHolder;

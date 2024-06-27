@@ -26,7 +26,10 @@
   width: 120px;
   height: 120px;
   animation: float 2s ease-in-out infinite;
-  transition: background-color 0.5s ease, width 0.5s ease, height 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    width 0.5s ease,
+    height 0.5s ease;
   position: absolute;
   bottom: 160px;
 }
@@ -36,7 +39,10 @@
     transform: rotate(0deg) translateX(0) scale(1);
     background-color: #ff0;
     filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
-    box-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0;
+    box-shadow:
+      0 0 10px #ff0,
+      0 0 20px #ff0,
+      0 0 30px #ff0;
   }
   10% {
     transform: rotate(360deg) translateX(10px) scale(1.1);
@@ -87,7 +93,10 @@
     transform: rotate(0deg) translateX(0) scale(1);
     background-color: #ff0;
     filter: sepia(1) saturate(2) hue-rotate(10deg) brightness(1);
-    box-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0;
+    box-shadow:
+      0 0 10px #ff0,
+      0 0 20px #ff0,
+      0 0 30px #ff0;
   }
   10% {
     transform: rotate(360deg) translateX(10px) scale(1.1);
@@ -130,7 +139,6 @@
   border-radius: 50%;
   animation: rapidSwirl2 2s linear;
 }
-
 
 .blue-bg {
   background: #0052ff;
@@ -184,7 +192,8 @@
 }
 
 @keyframes sparkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {
@@ -195,11 +204,15 @@
 .magic-orb::before,
 .magic-orb::after,
 .magic-orb .sparkle {
-  content: '';
+  content: "";
   position: absolute;
   width: 15px;
   height: 15px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
   border-radius: 50%;
   animation: sparkle 1.5s linear infinite;
   cursor: pointer;
@@ -236,7 +249,7 @@
   filter: sepia(0) saturate(2) hue-rotate(10deg) brightness(1);
 }
 .pointer {
-  cursor: pointer !important;; 
+  cursor: pointer !important;
 }
 
 .wallet-info {
@@ -268,26 +281,26 @@
 }
 
 @font-face {
-  font-family: 'BritneyOnchain';
-  src: url('/font/BritneyOnchain-Style02.otf') format('opentype');
+  font-family: "BritneyOnchain";
+  src: url("/font/BritneyOnchain-Style02.otf") format("opentype");
 }
 @font-face {
-  font-family: 'BritneyOnchain1';
-  src: url('/font/BritneyOnchain-Style01.otf') format('opentype');
+  font-family: "BritneyOnchain1";
+  src: url("/font/BritneyOnchain-Style01.otf") format("opentype");
 }
 
 .ocs-font {
-  font-family: 'BritneyOnchain', sans-serif;
+  font-family: "BritneyOnchain", sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 .ocs-fontbig {
-  font-size:120%;
-  font-family: 'BritneyOnchain', sans-serif;
+  font-size: 120%;
+  font-family: "BritneyOnchain", sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .ocs-font1 {
-  font-family: 'BritneyOnchain1', sans-serif;
+  font-family: "BritneyOnchain1", sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -296,7 +309,6 @@
     font-size: 1.875rem; /* text-3xl */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   }
-
 }
 
 .nopoweruser {
@@ -410,7 +422,7 @@
 .moving-background {
   width: 100%;
   height: 100%;
-  background-image: url('/img/summer.jpg');
+  background-image: url("/img/summer.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0% 50%;
@@ -441,5 +453,7 @@
 
 .baldmagic {
   opacity: 0;
-  animation: mistFadeIn 0s ease-in-out forwards, mistFadeOut 0.5s forwards;
+  animation:
+    mistFadeIn 0s ease-in-out forwards,
+    mistFadeOut 0.5s forwards;
 }
