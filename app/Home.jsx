@@ -347,15 +347,15 @@ const Home = () => {
           )}
           <div className="absolute top-24 w-full flex justify-center items-center"></div>
           <div className="relative flex items-center justify-center mt-6 z-10">
-            <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)' }}>
+            <div className="absolute z-10 flex items-center justify-center text-white text-5xl font-bold responsive-ocs" style={{ top: '5%', transform: 'translateY(-50%)',textShadow: '4px 4px 8px rgba(0, 0, 0, 0.7)' }}>
               <span>ᗷ</span>
               <span className="ocs-font">a</span>
               <span>ᔑ</span>
               <span>E</span>
               <span>ᗪ ᔑ</span>
-              <span className="ocs-font font-normal">u</span>
+              <span className="ocs-font font">u</span>
               <span>M</span>
-              <span className="ocs-font font-normal">m</span>
+              <span className="ocs-font1 font-normal">m</span>
               <span className="ocs-font font-normal">e</span>
               <span>ᖇ</span>
             </div>

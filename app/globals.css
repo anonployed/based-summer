@@ -168,17 +168,29 @@
 
 @font-face {
   font-family: 'BritneyOnchain';
+  src: url('/font/BritneyOnchain-Style02.otf') format('opentype');
+}
+@font-face {
+  font-family: 'BritneyOnchain1';
   src: url('/font/BritneyOnchain-Style01.otf') format('opentype');
 }
 
 .ocs-font {
   font-family: 'BritneyOnchain', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.ocs-font1 {
+  font-family: 'BritneyOnchain1', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 768px) {
   .responsive-ocs {
     font-size: 1.875rem; /* text-3xl */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   }
+
 }
 
 .nopoweruser {
