@@ -268,13 +268,17 @@ const FarcasterQuery = ({ walletAddress, onProfileImageChange }) => {
   ];
 
   const sortedElements = elements.sort((a, b) => (a.condition ? -1 : 1));
+  const noConditionsMet = elements.every((element) => !element.condition);
 
   return (
     <div>
       {sortedElements.map((element, index) => (
         <React.Fragment key={index}>{element.content}</React.Fragment>
       ))}
+      {noConditionsMet && <p>nothing??</p>}
+
     </div>
+  
   );
 };
 

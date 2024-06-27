@@ -43,8 +43,8 @@ const Home = () => {
       rpcEndpoint,
       baseChainId,
     );
-    setEthereum(ethereumProvider);
-
+    setEthereum(ethereumProvider)
+    
     const updateBgImage = () => {
       if (window.innerWidth <= 500) {
         setBgImage("/img/basedbgphone.png");
@@ -55,8 +55,10 @@ const Home = () => {
 
     window.addEventListener("resize", updateBgImage);
     updateBgImage();
+ 
 
     return () => window.removeEventListener("resize", updateBgImage);
+    
   }, []);
 
   useEffect(() => {
@@ -369,7 +371,7 @@ const Home = () => {
               style={{
                 top: "5%",
                 transform: "translateY(-50%)",
-                textShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
               }}
             >
               <span>ᗷ</span>

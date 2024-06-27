@@ -11,7 +11,7 @@ export default function App() {
         <meta name="description" content="Mint BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes on Base" />
         <meta property="og:title" content="BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ" />
         <meta property="og:description" content="BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ" />
-        <meta property="og:image" content="/summer.jpg" />
+        <meta property="og:image" content="/img/summer.jpg" />
         <meta property="og:url" content="https://basedsummer.vercel.app" />
         <link
           rel="apple-touch-icon"
