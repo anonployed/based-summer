@@ -30,8 +30,10 @@ const Home = () => {
   useEffect(() => {
     const walletLink = new WalletLink({
       appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+      appLogoUrl: "https://basedsummer.vercel.app/favicon.png"
     });
-
+  });
+  
     const baseChainId = 8453;
     const rpcEndpoint = "https://api.developer.coinbase.com/rpc/v1/base/2PSK07gMRzE8bNLRwGnGo7r6tC6-DuzO";
 
@@ -114,7 +116,8 @@ const Home = () => {
   const initializeEthereumProvider = () => {
     const walletLink = new WalletLink({
       appName: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
-      appLogoUrl: "/favicon.png"
+      appLogoUrl: "https://basedsummer.vercel.app/favicon.png"
+  
     });
 
     const baseChainId = 8453;
