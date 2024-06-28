@@ -7,7 +7,7 @@
 <h2>TODO:</h2>
 
 - [x] Responsive
-- [ ] Add NFT
+- [x] Add NFT
 - [x] Read Farcaster info
 - [x] Use Airstack
 - [x] Add ENS support
