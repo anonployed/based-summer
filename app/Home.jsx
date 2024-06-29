@@ -233,7 +233,7 @@ const Home = () => {
 
       const provider = new BrowserProvider(ethereum);
       const signer = await provider.getSigner();
-      const contractAddress = "0x550a11A25884f2f90603B2F0635fb805A290A3e0";
+      const contractAddress = "0xfb22ceB4E7dc308a954E4953Ab134AD295998243";
       const abi = [
         {
           type: "function",
@@ -304,13 +304,13 @@ const Home = () => {
 
       const contract = new Contract(contractAddress, abi, signer);
 
-      const maxID = 1;
+      const maxID = 33;
       const tokenId = Math.floor(Math.random() * (maxID + 1));
       const quantity = 1;
       const currency = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
       const pricePerToken = 0;
       const proof = [];
-      const quantityLimitPerWallet = 1;
+      const quantityLimitPerWallet = 3;
       const allowlistProof = {
         proof: proof,
         quantityLimitPerWallet: quantityLimitPerWallet,
