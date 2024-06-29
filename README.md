@@ -56,10 +56,10 @@ Minting can be done for free, sponsored by the Coinbase Paymaster (implementatio
 
 Based Summer leverages advanced blockchain technology to create a seamless and engaging onchain social experience. By abstracting complex blockchain interactions, it aims to drive mainstream adoption and enhance virality within the crypto community.
 
-**Watch the demo video to see how it works: [DEMO VIDEO](https://basedsummer.vercel.app/DEMO.mp4)**
+**Watch the demo video to see how it works: [DEMO VIDEO](https://basedsummer.vercel.app/demo.mp4)**
 
 <p align="center">
-  <a href="https://basedsummer.vercel.app/DEMO.mp4">
-    <img src="https://img.youtube.com/vi/TU_ID_DE_VIDEO/maxresdefault.jpg" alt="Watch Demo"/>
+  <a href="https://basedsummer.vercel.app/demo.mp4">
+    <img src="https://basedsummer.vercel.app/img/demo.jpg" alt="Watch Demo"/>
   </a>
 </p>
