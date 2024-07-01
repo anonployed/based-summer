@@ -13,6 +13,21 @@ export default function App() {
         <meta property="og:description" content="BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ" />
         <meta property="og:image" content="/img/summer.jpg" />
         <meta property="og:url" content="https://basedsummer.vercel.app" />
+
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ" />
+    <meta name="twitter:description" content="Celebrate ☀️OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ with vibrant, playful NFTs capturing the joy and warmth of summer. Enjoy the season's magic on the blockchain!" />
+    <meta name="twitter:image" content="https://basedsummer.vercel.app/img/summer.jpg" />
+    
+
+    <meta property="og:title" content="ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ" />
+    <meta property="og:description" content="Celebrate ☀️OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ with vibrant, playful NFTs capturing the joy and warmth of summer. Enjoy the season's magic on the blockchain!" />
+    <meta property="og:image" content="https://basedsummer.vercel.app/img/summer.jpg" />
+    <meta property="og:url" content="https://basedsummer.vercel.app" />
+    <meta property="og:type" content="website" />
+    
+
         <link
           rel="apple-touch-icon"
           sizes="57x57"

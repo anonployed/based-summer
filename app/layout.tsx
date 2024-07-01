@@ -4,9 +4,9 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
-  description: "Mint BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes on Base",
+export const metadata = {
+  title: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+  description: "Celebrate ☀️OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ with vibrant, playful NFTs capturing the joy and warmth of summer. Enjoy the season's magic on the blockchain!",
   openGraph: {
     images: [
       {
@@ -19,7 +19,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: "https://basedsummer.vercel.app/img/summer.jpg",
+    title: "ᗷᗩᔑEᗪ ᔑᑌᗰᗰEᖇ",
+    description: "Celebrate ☀️OᑎᑕᕼᗩIᑎ ᔑᑌᗰᗰEᖇ with vibrant, playful NFTs capturing the joy and warmth of summer. Enjoy the season's magic on the blockchain!",
+    image: {
+      url: "https://basedsummer.vercel.app/img/summer.jpg",
+      alt: "BᗩᔑEᗪ ᔑᑌᗰᗰEᖇ vibes",
+    },
   },
 };
 
